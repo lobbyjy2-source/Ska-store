@@ -3,44 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مؤسسة صخر المصري | لوحة التحكم الإدارية</title>
+    <title>مؤسسة صخر المصري | لوحة التحكم الذهبية</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body { background: #0A0A0A; color: #F9FAFB; font-family: system-ui, -apple-system, sans-serif; }
+        .gold-text { color: #D4AF37; }
+        .gold-border { border-color: #D4AF37; }
+        .gold-bg { background-color: #D4AF37; }
+        .gold-bg:hover { background-color: #C5A028; }
     </style>
 </head>
 <body class="min-h-screen">
     
     <nav class="bg-[#141414] border-b border-[#2A2A2A] p-4 flex justify-between items-center shadow-md">
         <div class="flex items-center space-x-3 space-x-reverse">
-            <div class="w-9 h-9 bg-black border border-red-500 rounded-xl flex items-center justify-center">
-                <span class="text-white font-black text-xs">SKA</span>
+            <div class="w-9 h-9 bg-black border gold-border rounded-xl flex items-center justify-center">
+                <span class="gold-text font-black text-xs">SKA</span>
             </div>
-            <h1 class="text-base font-bold text-red-500">لوحة التحكم - مؤسسة صخر المصري ⚙️</h1>
+            <h1 class="text-base font-bold gold-text">لوحة التحكم الملكية - مؤسسة صخر المصري ⚙️</h1>
         </div>
-        <a href="index.html" class="bg-[#1F1F1F] hover:bg-[#2A2A2A] border border-[#2A2A2A] px-4 py-2 rounded-xl text-xs font-bold transition">عرض المتجر الرئيسي 🌐</a>
+        <a href="index.html" class="bg-[#1F1F1F] hover:bg-[#2A2A2A] border border-[#2A2A2A] px-4 py-2 rounded-xl text-xs font-bold transition">عرض المتجر 🌐</a>
     </nav>
 
     <div id="login-section" class="max-w-md mx-auto mt-24 bg-[#141414] p-8 rounded-2xl border border-[#2A2A2A] shadow-2xl">
         <div class="text-center mb-6">
-            <div class="w-12 h-12 bg-black border border-red-500 rounded-2xl mx-auto flex items-center justify-center mb-3">
-                <i class="fa-solid fa-lock text-red-500 text-lg"></i>
+            <div class="w-12 h-12 bg-black border gold-border rounded-2xl mx-auto flex items-center justify-center mb-3">
+                <i class="fa-solid fa-lock gold-text text-lg"></i>
             </div>
-            <h2 class="text-xl font-black text-white">تسجيل دخول المشرف</h2>
-            <p class="text-xs text-gray-400 mt-1">منطقة مقيدة - خاصة بإدارة مؤسسة صخر المصري</p>
+            <h2 class="text-xl font-black text-white">دخول المشرف الخاص</h2>
         </div>
         
         <form id="login-form" class="space-y-4">
             <div>
                 <label class="block text-xs text-gray-400 mb-1 font-bold">البريد الإلكتروني للإدارة</label>
-                <input type="email" id="email" required class="w-full p-3 bg-[#0A0A0A] border border-[#2A2A2A] rounded-xl text-sm text-white focus:outline-none focus:border-red-500 transition" placeholder="admin@ska.com">
+                <input type="email" id="email" required class="w-full p-3 bg-[#0A0A0A] border border-[#2A2A2A] rounded-xl text-sm text-white focus:outline-none focus:border-[#D4AF37] transition" placeholder="admin@ska.com">
             </div>
             <div>
                 <label class="block text-xs text-gray-400 mb-1 font-bold">كلمة المرور</label>
-                <input type="password" id="password" required class="w-full p-3 bg-[#0A0A0A] border border-[#2A2A2A] rounded-xl text-sm text-white focus:outline-none focus:border-red-500 transition" placeholder="••••••••">
+                <input type="password" id="password" required class="w-full p-3 bg-[#0A0A0A] border border-[#2A2A2A] rounded-xl text-sm text-white focus:outline-none focus:border-[#D4AF37] transition" placeholder="••••••••">
             </div>
-            <button type="submit" class="w-full bg-red-600 hover:bg-red-700 p-3 rounded-xl font-bold text-sm transition shadow-lg text-white">دخول للنظام الإداري</button>
+            <button type="submit" class="w-full gold-bg p-3 rounded-xl font-bold text-sm transition shadow-lg text-black">دخول للنظام الملكي</button>
         </form>
     </div>
 
@@ -49,14 +52,14 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
             
             <div class="bg-[#141414] p-6 rounded-2xl border border-[#2A2A2A] shadow-xl">
-                <h2 class="text-lg font-black mb-4 text-red-500 flex items-center">
-                    <i class="fa-solid fa-box-archive ml-2"></i> إضافة منتج أو عرض جديد
+                <h2 class="text-lg font-black mb-4 gold-text flex items-center">
+                    <i class="fa-solid fa-box-archive ml-2"></i> إضافة منتج جديد
                 </h2>
                 
                 <form id="product-form" class="space-y-4">
                     <div>
                         <label class="block text-xs text-gray-400 mb-1">اسم المنتج</label>
-                        <input type="text" id="p-name" placeholder="مثال: شاشة آيفون 13 أصلية" required class="w-full p-3 bg-[#0A0A0A] border border-[#2A2A2A] rounded-xl text-sm text-white focus:border-red-500">
+                        <input type="text" id="p-name" placeholder="مثال: شاشة آيفون أصلية" required class="w-full p-3 bg-[#0A0A0A] border border-[#2A2A2A] rounded-xl text-sm text-white focus:border-[#D4AF37]">
                     </div>
 
                     <div class="grid grid-cols-2 gap-3">
@@ -80,42 +83,42 @@
                     </div>
 
                     <div>
-                        <label class="block text-xs text-gray-400 mb-1">رابط صورة المنتج (Image URL - اختياري)</label>
-                        <input type="text" id="p-image" placeholder="https://example.com/image.jpg" class="w-full p-3 bg-[#0A0A0A] border border-[#2A2A2A] rounded-xl text-sm text-white">
+                        <label class="block text-xs text-gray-400 mb-1">اختر صورة المنتج من ملفات الجهاز</label>
+                        <input type="file" id="p-image-file" accept="image/*" class="w-full p-2.5 bg-[#0A0A0A] border border-[#2A2A2A] rounded-xl text-xs text-gray-300 file:bg-[#2A2A2A] file:text-white file:border-0 file:rounded-lg file:px-3 file:py-1">
                     </div>
 
                     <div>
-                        <label class="block text-xs text-gray-400 mb-1">وصف المنتج أو تفاصيله</label>
-                        <textarea id="p-desc" placeholder="اكتب وصفاً مختصراً للقطعة أو جودتها..." class="w-full p-3 bg-[#0A0A0A] border border-[#2A2A2A] rounded-xl text-sm text-white h-20"></textarea>
+                        <label class="block text-xs text-gray-400 mb-1">وصف المنتج</label>
+                        <textarea id="p-desc" placeholder="وصف القطعة..." class="w-full p-3 bg-[#0A0A0A] border border-[#2A2A2A] rounded-xl text-sm text-white h-20"></textarea>
                     </div>
 
                     <div class="grid grid-cols-2 gap-3">
                         <div>
-                            <label class="block text-xs text-gray-400 mb-1">السعر الأساسي (د.أ)</label>
+                            <label class="block text-xs text-gray-400 mb-1">السعر (د.أ)</label>
                             <input type="number" id="p-price" placeholder="50" required class="w-full p-3 bg-[#0A0A0A] border border-[#2A2A2A] rounded-xl text-sm text-white">
                         </div>
                         <div>
-                            <label class="block text-xs text-gray-400 mb-1">نسبة الخصم العرض % (اختياري)</label>
-                            <input type="number" id="p-discount" placeholder="مثال: 15" class="w-full p-3 bg-[#0A0A0A] border border-[#2A2A2A] rounded-xl text-sm text-white">
+                            <label class="block text-xs text-gray-400 mb-1">نسبة الخصم % (اختياري)</label>
+                            <input type="number" id="p-discount" placeholder="10" class="w-full p-3 bg-[#0A0A0A] border border-[#2A2A2A] rounded-xl text-sm text-white">
                         </div>
                     </div>
 
-                    <button type="submit" class="w-full bg-green-600 hover:bg-green-700 p-3 rounded-xl font-bold text-sm shadow transition text-white">حفظ وإضافة المنتج للمتجر</button>
+                    <button type="submit" class="w-full gold-bg p-3 rounded-xl font-bold text-sm shadow transition text-black">حفظ وإضافة للمتجر</button>
                 </form>
             </div>
 
             <div class="bg-[#141414] p-6 rounded-2xl border border-[#2A2A2A] shadow-xl flex flex-col justify-between">
                 <div>
-                    <h2 class="text-lg font-black mb-4 text-red-500 flex items-center">
-                        <i class="fa-solid fa-list-check ml-2"></i> المنتجات الحالية في النظام (للحذف)
+                    <h2 class="text-lg font-black mb-4 gold-text flex items-center">
+                        <i class="fa-solid fa-list-check ml-2"></i> قائمة المنتجات الحالية
                     </h2>
                     <div id="admin-products-list" class="space-y-3 max-h-[450px] overflow-y-auto pr-1">
-                        <p class="text-gray-500 text-sm text-center py-10">جاري تحميل المنتجات...</p>
+                        <p class="text-gray-500 text-sm text-center py-10">جاري التحميل...</p>
                     </div>
                 </div>
 
                 <div class="pt-6 border-t border-[#2A2A2A] mt-6 text-center">
-                    <button id="logout-btn" class="bg-red-600 hover:bg-red-700 px-6 py-2.5 rounded-xl font-bold text-xs transition text-white">تسجيل الخروج الآمن</button>
+                    <button id="logout-btn" class="bg-red-600 hover:bg-red-700 px-6 py-2.5 rounded-xl font-bold text-xs transition text-white">تسجيل الخروج</button>
                 </div>
             </div>
 
@@ -164,9 +167,8 @@
             const password = document.getElementById('password').value;
             try {
                 await signInWithEmailAndPassword(auth, email, password);
-                alert('تم تسجيل الدخول بنجاح يا باشا!');
             } catch (error) {
-                alert('خطأ في بيانات الدخول: ' + error.message);
+                // خطأ صامت بدون alert مزعج
             }
         });
 
@@ -175,43 +177,40 @@
             const name = document.getElementById('p-name').value;
             const cat = document.getElementById('p-cat').value;
             const status = document.getElementById('p-status').value;
-            const image = document.getElementById('p-image').value;
             const description = document.getElementById('p-desc').value;
             const price = Number(document.getElementById('p-price').value);
             const discount = Number(document.getElementById('p-discount').value) || 0;
-
             const finalPrice = discount > 0 ? price - (price * discount / 100) : price;
 
-            try {
-                await addDoc(collection(db, "products"), {
-                    name,
-                    cat,
-                    status,
-                    image,
-                    description,
-                    price,
-                    discount,
-                    finalPrice,
-                    createdAt: new Date()
-                });
-                alert('تمت إضافة المنتج بنجاح إلى مؤسسة صخر المصري!');
-                productForm.reset();
-                loadAdminProducts();
-            } catch (error) {
-                alert('خطأ أثناء إضافة المنتج: ' + error.message);
+            const imageFile = document.getElementById('p-image-file').files[0];
+
+            if (imageFile) {
+                const reader = new FileReader();
+                reader.onload = async function(uploadEvent) {
+                    const base64Image = uploadEvent.target.result;
+                    await saveProductToDb(name, cat, status, description, price, discount, finalPrice, base64Image);
+                };
+                reader.readAsDataURL(imageFile);
+            } else {
+                await saveProductToDb(name, cat, status, description, price, discount, finalPrice, '');
             }
         });
 
+        async function saveProductToDb(name, cat, status, description, price, discount, finalPrice, image) {
+            try {
+                await addDoc(collection(db, "products"), {
+                    name, cat, status, description, price, discount, finalPrice, image, createdAt: new Date()
+                });
+                productForm.reset();
+                loadAdminProducts();
+            } catch (error) {}
+        }
+
         window.deleteProduct = async function(id) {
-            if (confirm('هل أنت متأكد من حذف هذا المنتج نهائياً؟')) {
-                try {
-                    await deleteDoc(doc(db, "products", id));
-                    alert('تم الحذف بنجاح');
-                    loadAdminProducts();
-                } catch (err) {
-                    alert('خطأ أثناء عملية الحذف');
-                }
-            }
+            try {
+                await deleteDoc(doc(db, "products", id));
+                loadAdminProducts();
+            } catch (err) {}
         };
 
         async function loadAdminProducts() {
@@ -219,7 +218,7 @@
             try {
                 const querySnapshot = await getDocs(collection(db, "products"));
                 if (querySnapshot.empty) {
-                    adminProductsList.innerHTML = '<p class="text-gray-500 text-sm text-center py-6">لا توجد منتجات مضافة حالياً.</p>';
+                    adminProductsList.innerHTML = '<p class="text-gray-500 text-sm text-center py-6">لا توجد منتجات حالياً.</p>';
                     return;
                 }
                 querySnapshot.forEach((document) => {
@@ -232,16 +231,14 @@
                                 </div>
                                 <div>
                                     <h4 class="font-bold text-xs text-white line-clamp-1">${p.name}</h4>
-                                    <span class="text-[10px] text-red-500 font-bold">${p.finalPrice} د.أ (${p.cat}) - <span class="text-gray-400">${p.status}</span></span>
+                                    <span class="text-[10px] gold-text font-bold">${p.finalPrice} د.أ (${p.cat})</span>
                                 </div>
                             </div>
                             <button onclick="deleteProduct('${document.id}')" class="bg-red-600 hover:bg-red-700 px-3 py-1.5 rounded-lg text-xs font-bold transition text-white">حذف</button>
                         </div>
                     `;
                 });
-            } catch(e) {
-                adminProductsList.innerHTML = '<p class="text-red-500 text-sm text-center">خطأ في جلب المنتجات</p>';
-            }
+            } catch(e) {}
         }
 
         logoutBtn.addEventListener('click', () => {
