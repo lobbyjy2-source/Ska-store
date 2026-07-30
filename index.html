@@ -14,7 +14,7 @@
             --line: #E5E7EB;
             --text: #111827;
             --muted: #6B7280;
-            --primary: #DC2626; /* أحمر */
+            --primary: #DC2626;
             --dark-box: #000000;
         }
         body.dark {
@@ -30,7 +30,7 @@
         body { transition: background .3s, color .3s; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, sans-serif; }
     </style>
 </head>
-<body class="">
+<body>
 
     <header class="sticky top-0 z-50 bg-[var(--panel)] border-b border-[var(--line)] shadow-sm backdrop-blur-md bg-opacity-90">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
@@ -41,10 +41,10 @@
                     <span>السلة</span>
                     <span id="cart-count" class="bg-white text-[var(--primary)] text-xs px-2 py-0.5 rounded-full font-black">0</span>
                 </button>
-                <button onclick="toggleDarkMode()" class="bg-[var(--panel-2)] border border-[var(--line)] p-2.5 rounded-xl text-[var(--text)] hover:bg-[var(--line)] transition" title="تغيير الوضع الليلي">
-                    <i class="fa-solid fa-moon text-lg"></i>
+                <button onclick="toggleSettings()" class="bg-[var(--panel-2)] border border-[var(--line)] p-2.5 rounded-xl text-[var(--text)] hover:bg-[var(--line)] transition" title="الإعدادات">
+                    <i class="fa-solid fa-gear text-lg"></i>
                 </button>
-                <a href="admin.html" class="bg-[var(--panel-2)] border border-[var(--line)] p-2.5 rounded-xl text-[var(--muted)] hover:text-[var(--primary)] transition text-xs" title="لوحة التحكم">
+                <a href="admin.html" class="bg-[var(--panel-2)] border border-[var(--line)] p-2.5 rounded-xl text-[var(--muted)] hover:text-amber-500 transition text-xs" title="لوحة التحكم">
                     <i class="fa-solid fa-lock text-sm"></i>
                 </a>
             </div>
@@ -67,7 +67,7 @@
             ⭐ الجودة والاحترافية في صيانة الأجهزة
         </div>
         <h2 class="text-2xl md:text-4xl font-black mt-1 mb-3">قطع غيار أصلية و <span class="text-[var(--primary)]">أدوات صيانة متطورة</span></h2>
-        <p class="text-sm text-[var(--muted)] max-w-xl mx-auto">شاشات، بطاريات، أدوات فك، وإكسسوارات لكل الهواتف بأسعار منافسة وجودة لا تعوض.</p>
+        <p class="text-sm text-[var(--muted)] max-w-xl mx-auto">شاشات، بطاريات، أدوات فك، وإكسسوارات لكل الهواتف بأسعار منافسة.</p>
     </section>
 
     <main class="container mx-auto px-4 py-8">
@@ -84,6 +84,64 @@
         </div>
     </main>
 
+    <div id="settings-drawer" class="fixed inset-0 bg-black/60 z-50 hidden flex justify-end backdrop-blur-sm">
+        <div class="bg-[var(--panel)] w-full max-w-md h-full p-6 flex flex-col justify-between border-l border-[var(--line)] shadow-2xl overflow-y-auto">
+            <div>
+                <div class="flex justify-between items-center mb-6 border-b border-[var(--line)] pb-4">
+                    <h3 class="font-black text-lg text-[var(--primary)]"><i class="fa-solid fa-gear ml-2"></i> الإعدادات</h3>
+                    <button onclick="toggleSettings()" class="text-2xl font-bold hover:text-red-500">&times;</button>
+                </div>
+
+                <div class="mb-5">
+                    <label class="block text-xs font-bold text-[var(--muted)] mb-2">اللغة / Language</label>
+                    <div class="grid grid-cols-2 gap-2">
+                        <button onclick="setLang('ar')" class="p-2.5 rounded-xl border border-[var(--line)] text-xs font-bold bg-[var(--panel-2)]">العربية</button>
+                        <button onclick="setLang('en')" class="p-2.5 rounded-xl border border-[var(--line)] text-xs font-bold bg-[var(--panel-2)]">English</button>
+                    </div>
+                </div>
+
+                <div class="mb-5 flex justify-between items-center bg-[var(--panel-2)] p-3 rounded-xl border border-[var(--line)]">
+                    <span class="text-xs font-bold">الوضع الليلي (Dark Mode)</span>
+                    <button onclick="toggleDarkMode()" class="bg-[var(--primary)] text-white px-3 py-1.5 rounded-lg text-xs font-bold">تغيير</button>
+                </div>
+
+                <div class="mb-5 space-y-3 border-t border-[var(--line)] pt-4">
+                    <h4 class="font-bold text-xs text-[var(--text)]">بيانات المستخدم / الحساب:</h4>
+                    <input type="text" id="user-name" placeholder="الاسم الكامل" class="w-full p-2.5 bg-[var(--panel-2)] border border-[var(--line)] rounded-xl text-xs text-[var(--text)]">
+                    <input type="text" id="user-phone" placeholder="رقم الهاتف" class="w-full p-2.5 bg-[var(--panel-2)] border border-[var(--line)] rounded-xl text-xs text-[var(--text)]">
+                </div>
+
+                <div class="border-t border-[var(--line)] pt-4 space-y-2">
+                    <h4 class="font-bold text-xs text-[var(--text)] mb-2">طريقة الدفع:</h4>
+                    <label class="flex items-center space-x-2 space-x-reverse text-xs bg-[var(--panel-2)] p-2.5 rounded-xl border border-[var(--line)] cursor-pointer">
+                        <input type="radio" name="payment" value="الدفع عند الاستلام" checked class="text-red-500">
+                        <span>الدفع عند الاستلام</span>
+                    </label>
+                    <label class="flex items-center space-x-2 space-x-reverse text-xs bg-[var(--panel-2)] p-2.5 rounded-xl border border-[var(--line)] cursor-pointer">
+                        <input type="radio" name="payment" value="بطاقة ائتمان" class="text-red-500">
+                        <span>بطاقة الائتمان (Credit Card)</span>
+                    </label>
+                    <label class="flex items-center space-x-2 space-x-reverse text-xs bg-[var(--panel-2)] p-2.5 rounded-xl border border-[var(--line)] cursor-pointer">
+                        <input type="radio" name="payment" value="زين كاش" class="text-red-500">
+                        <span>محفظة زين كاش (Zain Cash)</span>
+                    </label>
+                    <label class="flex items-center space-x-2 space-x-reverse text-xs bg-[var(--panel-2)] p-2.5 rounded-xl border border-[var(--line)] cursor-pointer">
+                        <input type="radio" name="payment" value="أورنج موني" class="text-red-500">
+                        <span>أورنج موني (Orange Money)</span>
+                    </label>
+                    <label class="flex items-center space-x-2 space-x-reverse text-xs bg-[var(--panel-2)] p-2.5 rounded-xl border border-[var(--line)] cursor-pointer">
+                        <input type="radio" name="payment" value="أمنية كاش" class="text-red-500">
+                        <span>أمنية أمنية كاش (Umniah Cash)</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="pt-4 border-t border-[var(--line)] mt-4">
+                <button onclick="saveSettings()" class="w-full bg-[var(--primary)] text-white py-3 rounded-xl font-bold shadow text-xs">حفظ الإعدادات</button>
+            </div>
+        </div>
+    </div>
+
     <div id="cart-drawer" class="fixed inset-0 bg-black/60 z-50 hidden flex justify-end backdrop-blur-sm">
         <div class="bg-[var(--panel)] w-full max-w-md h-full p-6 flex flex-col justify-between border-l border-[var(--line)] shadow-2xl overflow-y-auto">
             <div>
@@ -95,23 +153,14 @@
                 <div id="cart-items" class="space-y-3 mb-6">
                     <p class="text-center text-[var(--muted)] py-6">السلة فارغة حالياً</p>
                 </div>
-
-                <div class="border-t border-[var(--line)] pt-4 space-y-3">
-                    <h4 class="font-bold text-sm text-[var(--text)]">بيانات التوصيل والاستلام:</h4>
-                    <input type="text" id="cust-location" placeholder="موقع الاستلام / العنوان بالتفصيل" class="w-full p-2.5 bg-[var(--panel-2)] border border-[var(--line)] rounded-xl text-xs text-[var(--text)]">
-                    <select id="delivery-range" class="w-full p-2.5 bg-[var(--panel-2)] border border-[var(--line)] rounded-xl text-xs text-[var(--text)]">
-                        <option value="داخل المدينة (دنانير التوصيل: 2 د.أ)">داخل المدينة (المدى القريب)</option>
-                        <option value="أطراف المدينة (دنانير التوصيل: 4 د.أ)">أطراف المدينة (المدى المتوسط)</option>
-                    </select>
-                </div>
             </div>
 
-            <div class="border-t border-[var(--line)] pt-4 mt-4">
+            <div class="border-t border-[var(--line)] pt-4">
                 <div class="flex justify-between font-black text-lg mb-4">
                     <span>الإجمالي النهائي:</span>
                     <span id="cart-total" class="text-[var(--primary)]">0 د.أ</span>
                 </div>
-                <button onclick="checkoutOrder()" class="w-full bg-[var(--primary)] text-white py-3 rounded-xl font-bold shadow-lg hover:opacity-90 transition">تأكيد وإرسال الطلب</button>
+                <button onclick="checkoutOrder()" class="w-full bg-[var(--primary)] text-white py-3 rounded-xl font-bold shadow-lg hover:opacity-90 transition">تأكيد الطلب وإرساله</button>
             </div>
         </div>
     </div>
@@ -142,7 +191,7 @@
             try {
                 const querySnapshot = await getDocs(collection(db, "products"));
                 if (querySnapshot.empty) {
-                    grid.innerHTML = '<p class="text-center col-span-full text-[var(--muted)] py-10">لا توجد منتجات متاحة حالياً. أضفها من لوحة التحكم!</p>';
+                    grid.innerHTML = '<p class="text-center col-span-full text-[var(--muted)] py-10">لا توجد منتجات حالياً.</p>';
                     return;
                 }
                 productsList = [];
@@ -160,11 +209,10 @@
         function renderFilteredProducts() {
             const grid = document.getElementById('products-grid');
             grid.innerHTML = '';
-
             const filtered = currentCategory === 'الكل' ? productsList : productsList.filter(p => p.cat === currentCategory);
 
             if (filtered.length === 0) {
-                grid.innerHTML = '<p class="text-center col-span-full text-[var(--muted)] py-10">لا توجد منتجات في هذا القسم حالياً.</p>';
+                grid.innerHTML = '<p class="text-center col-span-full text-[var(--muted)] py-10">لا توجد منتجات في هذا القسم.</p>';
                 return;
             }
 
@@ -177,14 +225,14 @@
                 let discountBadge = p.discount ? `<span class="text-[10px] bg-red-600 text-white font-bold px-1.5 py-0.5 rounded">خصم ${p.discount}%</span>` : '';
 
                 grid.innerHTML += `
-                    <div class="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-4 flex flex-col justify-between shadow-sm hover:border-[var(--primary)] transition duration-200">
+                    <div class="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-4 flex flex-col justify-between shadow-sm hover:border-[var(--primary)] transition">
                         <div>
                             <div class="h-36 bg-[var(--panel-2)] rounded-xl mb-3 flex items-center justify-center overflow-hidden border border-[var(--line)] relative">
                                 ${p.image ? `<img src="${p.image}" class="w-full h-full object-cover">` : `<i class="fa-solid fa-microchip text-3xl text-[var(--muted)]"></i>`}
                                 <div class="absolute top-2 right-2">${statusBadge}</div>
                                 <div class="absolute top-2 left-2">${discountBadge}</div>
                             </div>
-                            <span class="text-[10px] text-[var(--muted)] uppercase">${p.cat || 'قطع غيار'}</span>
+                            <span class="text-[10px] text-[var(--muted)] uppercase">${p.cat || 'قطع'}</span>
                             <h3 class="font-bold text-sm mb-1 line-clamp-1">${p.name}</h3>
                             <p class="text-xs text-[var(--muted)] mb-3 line-clamp-2">${p.description || ''}</p>
                         </div>
@@ -218,7 +266,7 @@
             const product = productsList.find(p => p.id === id);
             cart.push(product);
             updateCart();
-            toggleCart(); // فتح السلة تلقائياً لإظهار الإضافة
+            toggleCart();
         }
 
         function updateCart() {
@@ -263,23 +311,28 @@
             document.getElementById('cart-drawer').classList.toggle('hidden');
         }
 
+        window.toggleSettings = function() {
+            document.getElementById('settings-drawer').classList.toggle('hidden');
+        }
+
         window.toggleDarkMode = function() {
             document.body.classList.toggle('dark');
-            const icon = event.currentTarget.querySelector('i');
-            if(document.body.classList.contains('dark')) {
-                icon.className = "fa-solid fa-sun text-lg";
-            } else {
-                icon.className = "fa-solid fa-moon text-lg";
-            }
+        }
+
+        window.setLang = function(lang) {
+            // صامت بدون alert
+        }
+
+        window.saveSettings = function() {
+            toggleSettings();
         }
 
         window.checkoutOrder = function() {
-            const location = document.getElementById('cust-location').value;
-            if(!location) {
-                alert('الرجاء إدخال موقع الاستلام أو العنوان!');
+            const name = document.getElementById('user-name').value;
+            if(!name) {
+                toggleSettings();
                 return;
             }
-            alert('تم تأكيد طلبك بنجاح لدى مؤسسة صخر المصري! سيتم التواصل معك قريباً.');
             cart = [];
             updateCart();
             toggleCart();
