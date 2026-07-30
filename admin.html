@@ -10,28 +10,33 @@
         body { background: #0A0A0A; color: #F9FAFB; font-family: system-ui, -apple-system, sans-serif; }
         .gold-text { color: #D4AF37; }
         .gold-border { border-color: #D4AF37; }
-        .gold-bg { background-color: #D4AF37; }
+        .gold-bg { background-color: #D4AF37; color: #000; }
         .gold-bg:hover { background-color: #C5A028; }
+        .admin-ornament-box {
+            border: 2px solid #D4AF37;
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.12);
+            background-image: radial-gradient(circle at top right, rgba(212, 175, 55, 0.04), transparent 50%);
+        }
     </style>
 </head>
 <body class="min-h-screen">
     
-    <nav class="bg-[#141414] border-b border-[#2A2A2A] p-4 flex justify-between items-center shadow-md">
+    <nav class="bg-[#141414] border-b gold-border p-4 flex justify-between items-center shadow-md">
         <div class="flex items-center space-x-3 space-x-reverse">
             <div class="w-9 h-9 bg-black border gold-border rounded-xl flex items-center justify-center">
                 <span class="gold-text font-black text-xs">SKA</span>
             </div>
-            <h1 class="text-base font-bold gold-text">لوحة التحكم الملكية - مؤسسة صخر المصري ⚙️</h1>
+            <h1 class="text-base font-bold gold-text">لوحة تحكم المشرف - مؤسسة صخر المصري ⚙️</h1>
         </div>
-        <a href="index.html" class="bg-[#1F1F1F] hover:bg-[#2A2A2A] border border-[#2A2A2A] px-4 py-2 rounded-xl text-xs font-bold transition">عرض المتجر 🌐</a>
+        <a href="index.html" class="bg-[#1F1F1F] hover:bg-[#2A2A2A] border gold-border px-4 py-2 rounded-xl text-xs font-bold transition gold-text">عرض المتجر 🌐</a>
     </nav>
 
-    <div id="login-section" class="max-w-md mx-auto mt-24 bg-[#141414] p-8 rounded-2xl border border-[#2A2A2A] shadow-2xl">
+    <div id="login-section" class="max-w-md mx-auto mt-24 bg-[#141414] p-8 rounded-2xl admin-ornament-box">
         <div class="text-center mb-6">
             <div class="w-12 h-12 bg-black border gold-border rounded-2xl mx-auto flex items-center justify-center mb-3">
                 <i class="fa-solid fa-lock gold-text text-lg"></i>
             </div>
-            <h2 class="text-xl font-black text-white">دخول المشرف الخاص</h2>
+            <h2 class="text-xl font-black text-white">تسجيل دخول المشرف</h2>
         </div>
         
         <form id="login-form" class="space-y-4">
@@ -43,7 +48,7 @@
                 <label class="block text-xs text-gray-400 mb-1 font-bold">كلمة المرور</label>
                 <input type="password" id="password" required class="w-full p-3 bg-[#0A0A0A] border border-[#2A2A2A] rounded-xl text-sm text-white focus:outline-none focus:border-[#D4AF37] transition" placeholder="••••••••">
             </div>
-            <button type="submit" class="w-full gold-bg p-3 rounded-xl font-bold text-sm transition shadow-lg text-black">دخول للنظام الملكي</button>
+            <button type="submit" class="w-full gold-bg p-3 rounded-xl font-bold text-sm transition shadow-lg">دخول للنظام</button>
         </form>
     </div>
 
@@ -51,7 +56,7 @@
         
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
             
-            <div class="bg-[#141414] p-6 rounded-2xl border border-[#2A2A2A] shadow-xl">
+            <div class="bg-[#141414] p-6 rounded-2xl admin-ornament-box">
                 <h2 class="text-lg font-black mb-4 gold-text flex items-center">
                     <i class="fa-solid fa-box-archive ml-2"></i> إضافة منتج جديد
                 </h2>
@@ -103,11 +108,11 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="w-full gold-bg p-3 rounded-xl font-bold text-sm shadow transition text-black">حفظ وإضافة للمتجر</button>
+                    <button type="submit" class="w-full gold-bg p-3 rounded-xl font-bold text-sm shadow transition">حفظ وإضافة للمتجر</button>
                 </form>
             </div>
 
-            <div class="bg-[#141414] p-6 rounded-2xl border border-[#2A2A2A] shadow-xl flex flex-col justify-between">
+            <div class="bg-[#141414] p-6 rounded-2xl admin-ornament-box flex flex-col justify-between">
                 <div>
                     <h2 class="text-lg font-black mb-4 gold-text flex items-center">
                         <i class="fa-solid fa-list-check ml-2"></i> قائمة المنتجات الحالية
@@ -167,9 +172,7 @@
             const password = document.getElementById('password').value;
             try {
                 await signInWithEmailAndPassword(auth, email, password);
-            } catch (error) {
-                // خطأ صامت بدون alert مزعج
-            }
+            } catch (error) {}
         });
 
         productForm.addEventListener('submit', async (e) => {
@@ -224,10 +227,10 @@
                 querySnapshot.forEach((document) => {
                     const p = document.data();
                     adminProductsList.innerHTML += `
-                        <div class="bg-[#0A0A0A] p-3 rounded-xl flex justify-between items-center border border-[#2A2A2A]">
+                        <div class="bg-[#0A0A0A] p-3 rounded-xl flex justify-between items-center border gold-border">
                             <div class="flex items-center space-x-3 space-x-reverse">
                                 <div class="w-10 h-10 bg-gray-800 rounded-lg overflow-hidden flex items-center justify-center">
-                                    ${p.image ? `<img src="${p.image}" class="w-full h-full object-cover">` : `<i class="fa-solid fa-microchip text-xs text-gray-400"></i>`}
+                                    ${p.image ? `<img src="${p.image}" class="w-full h-full object-cover">` : `<i class="fa-solid fa-microchip text-xs gold-text"></i>`}
                                 </div>
                                 <div>
                                     <h4 class="font-bold text-xs text-white line-clamp-1">${p.name}</h4>
