@@ -10,91 +10,115 @@
         :root {
             --bg: #FFFFFF;
             --panel: #FFFFFF;
-            --panel-2: #F9FAFB;
+            --panel-2: #F3F4F6;
             --line: #E5E7EB;
             --text: #111827;
             --muted: #6B7280;
-            --copper: #C2410C;
-            --warn: #8F0909;
+            --primary: #DC2626; /* أحمر */
+            --dark-box: #000000;
         }
         body.dark {
-            --bg: #141414;
-            --panel: #1C1C1C;
-            --panel-2: #242424;
-            --line: #333333;
-            --text: #F5F5F5;
-            --muted: #999999;
-            --copper: #EA580C;
-            --warn: #FF5555;
+            --bg: #0A0A0A;
+            --panel: #141414;
+            --panel-2: #1F1F1F;
+            --line: #2A2A2A;
+            --text: #F9FAFB;
+            --muted: #9CA3AF;
+            --primary: #EF4444;
+            --dark-box: #1F1F1F;
         }
-        body { transition: background .2s, color .2s; }
-        * { box-sizing:border-box; margin:0; padding:0; }
-        html { scroll-behavior:smooth; }
-        body { background:var(--bg); color:var(--text); font-family: system-ui, -apple-system, sans-serif; }
+        body { transition: background .3s, color .3s; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, sans-serif; }
     </style>
 </head>
-<body class="dark">
-    <header class="sticky top-0 z-50 bg-[var(--panel)] border-b border-[var(--line)] shadow-sm">
+<body class="">
+
+    <header class="sticky top-0 z-50 bg-[var(--panel)] border-b border-[var(--line)] shadow-sm backdrop-blur-md bg-opacity-90">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center space-x-3 space-x-reverse">
-                <button onclick="toggleCart()" class="relative bg-[var(--copper)] text-white px-4 py-2 rounded-xl font-bold flex items-center space-x-2 space-x-reverse text-sm shadow hover:opacity-90">
+            
+            <div class="flex items-center space-x-2 space-x-reverse">
+                <button onclick="toggleCart()" class="relative bg-[var(--primary)] text-white px-4 py-2 rounded-xl font-bold flex items-center space-x-2 space-x-reverse text-sm shadow-md hover:opacity-90 transition">
                     <i class="fa-solid fa-cart-shopping"></i>
                     <span>السلة</span>
-                    <span id="cart-count" class="bg-white text-[var(--copper)] text-xs px-2 py-0.5 rounded-full">0</span>
+                    <span id="cart-count" class="bg-white text-[var(--primary)] text-xs px-2 py-0.5 rounded-full font-black">0</span>
                 </button>
-                <a href="admin.html" class="bg-[var(--panel-2)] border border-[var(--line)] p-2.5 rounded-xl text-[var(--text)] hover:bg-[var(--line)]" title="لوحة التحكم">
-                    <i class="fa-solid fa-gear text-lg"></i>
+                <button onclick="toggleDarkMode()" class="bg-[var(--panel-2)] border border-[var(--line)] p-2.5 rounded-xl text-[var(--text)] hover:bg-[var(--line)] transition" title="تغيير الوضع الليلي">
+                    <i class="fa-solid fa-moon text-lg"></i>
+                </button>
+                <a href="admin.html" class="bg-[var(--panel-2)] border border-[var(--line)] p-2.5 rounded-xl text-[var(--muted)] hover:text-[var(--primary)] transition text-xs" title="لوحة التحكم">
+                    <i class="fa-solid fa-lock text-sm"></i>
                 </a>
             </div>
-            <div class="text-right flex items-center space-x-3 space-x-reverse">
+
+            <div class="flex items-center space-x-3 space-x-reverse text-right">
                 <div>
-                    <h1 id="store-title" class="font-black text-lg md:text-xl text-[var(--copper)]">مؤسسة صخر المصري</h1>
-                    <p class="text-[10px] text-[var(--muted)] uppercase tracking-wider">PHONE PARTS & REPAIR</p>
+                    <h1 class="font-black text-base md:text-xl text-[var(--text)] tracking-wide">مؤسسة صخر المصري</h1>
+                    <p class="text-[10px] text-[var(--primary)] font-bold tracking-widest uppercase">PHONE PARTS & MAINTENANCE</p>
                 </div>
-                <img id="store-logo" src="" alt="" class="w-10 h-10 rounded-full object-cover hidden">
+                <div class="w-11 h-11 bg-[var(--dark-box)] border border-red-500 rounded-xl flex items-center justify-center shadow-lg">
+                    <span class="text-white font-black text-base tracking-tighter">SKA</span>
+                </div>
             </div>
+
         </div>
     </header>
 
-    <section class="container mx-auto px-4 py-8 text-center border-b border-[var(--line)]">
-        <span class="bg-[var(--panel-2)] border border-[var(--line)] text-xs px-3 py-1 rounded-full text-[var(--muted)]">ORDER-2026-0417</span>
-        <h2 class="text-2xl md:text-4xl font-black mt-3 mb-2">قطع غيار أصلية و <span class="text-[var(--copper)]">أدوات صيانة احترافية</span></h2>
-        <p class="text-sm text-[var(--muted)] max-w-xl mx-auto mb-6">شاشات، بطاريات، أدوات فك وتركيب، وإكسسوارات لكل أنواع الهواتف - بجودة موثوقة وأسعار واضحة، من غير تعقيد.</p>
-        <div class="flex justify-center gap-3">
-            <a href="#products-section" class="bg-[var(--copper)] text-white px-6 py-2.5 rounded-xl font-bold text-sm shadow">تصفح المنتجات</a>
+    <section class="container mx-auto px-4 py-10 text-center border-b border-[var(--line)]">
+        <div class="inline-block bg-[var(--panel-2)] border border-[var(--line)] text-xs px-4 py-1.5 rounded-full text-[var(--primary)] font-bold mb-3 shadow-sm">
+            ⭐ الجودة والاحترافية في صيانة الأجهزة
         </div>
+        <h2 class="text-2xl md:text-4xl font-black mt-1 mb-3">قطع غيار أصلية و <span class="text-[var(--primary)]">أدوات صيانة متطورة</span></h2>
+        <p class="text-sm text-[var(--muted)] max-w-xl mx-auto">شاشات، بطاريات، أدوات فك، وإكسسوارات لكل الهواتف بأسعار منافسة وجودة لا تعوض.</p>
     </section>
 
-    <main id="products-section" class="container mx-auto px-4 py-8">
-        <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            <p class="text-center col-span-full text-[var(--muted)]">جاري تحميل المنتجات...</p>
+    <main class="container mx-auto px-4 py-8">
+        <div class="flex justify-center gap-2 mb-8 overflow-x-auto pb-2">
+            <button onclick="filterCategory('الكل')" class="cat-btn active px-4 py-2 rounded-xl text-sm font-bold bg-[var(--primary)] text-white shadow">الكل</button>
+            <button onclick="filterCategory('شاشات')" class="cat-btn px-4 py-2 rounded-xl text-sm font-bold bg-[var(--panel-2)] border border-[var(--line)] hover:border-red-500 transition">الشاشات</button>
+            <button onclick="filterCategory('بطاريات')" class="cat-btn px-4 py-2 rounded-xl text-sm font-bold bg-[var(--panel-2)] border border-[var(--line)] hover:border-red-500 transition">البطاريات</button>
+            <button onclick="filterCategory('أدوات صيانة')" class="cat-btn px-4 py-2 rounded-xl text-sm font-bold bg-[var(--panel-2)] border border-[var(--line)] hover:border-red-500 transition">أدوات صيانة</button>
+            <button onclick="filterCategory('كيبلات وإكسسوارات')" class="cat-btn px-4 py-2 rounded-xl text-sm font-bold bg-[var(--panel-2)] border border-[var(--line)] hover:border-red-500 transition">الإكسسوارات</button>
+        </div>
+
+        <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+            <p class="text-center col-span-full text-[var(--muted)] py-10">جاري تحميل المنتجات...</p>
         </div>
     </main>
 
-    <div id="cart-drawer" class="fixed inset-0 bg-black/50 z-50 hidden flex justify-end">
-        <div class="bg-[var(--panel)] w-full max-w-md h-full p-6 flex flex-col justify-between border-l border-[var(--line)]">
+    <div id="cart-drawer" class="fixed inset-0 bg-black/60 z-50 hidden flex justify-end backdrop-blur-sm">
+        <div class="bg-[var(--panel)] w-full max-w-md h-full p-6 flex flex-col justify-between border-l border-[var(--line)] shadow-2xl overflow-y-auto">
             <div>
-                <div class="flex justify-between items-center mb-6">
-                    <h3 class="font-bold text-lg">سلة الطلبات</h3>
-                    <button onclick="toggleCart()" class="text-xl font-bold">&times;</button>
+                <div class="flex justify-between items-center mb-6 border-b border-[var(--line)] pb-4">
+                    <h3 class="font-black text-lg text-[var(--primary)]"><i class="fa-solid fa-cart-shopping ml-2"></i> سلة الطلبات</h3>
+                    <button onclick="toggleCart()" class="text-2xl font-bold hover:text-red-500">&times;</button>
                 </div>
-                <div id="cart-items" class="space-y-3 max-h-[60vh] overflow-y-auto">
-                    <p class="text-center text-[var(--muted)]">السلة فارغة حالياً</p>
+                
+                <div id="cart-items" class="space-y-3 mb-6">
+                    <p class="text-center text-[var(--muted)] py-6">السلة فارغة حالياً</p>
+                </div>
+
+                <div class="border-t border-[var(--line)] pt-4 space-y-3">
+                    <h4 class="font-bold text-sm text-[var(--text)]">بيانات التوصيل والاستلام:</h4>
+                    <input type="text" id="cust-location" placeholder="موقع الاستلام / العنوان بالتفصيل" class="w-full p-2.5 bg-[var(--panel-2)] border border-[var(--line)] rounded-xl text-xs text-[var(--text)]">
+                    <select id="delivery-range" class="w-full p-2.5 bg-[var(--panel-2)] border border-[var(--line)] rounded-xl text-xs text-[var(--text)]">
+                        <option value="داخل المدينة (دنانير التوصيل: 2 د.أ)">داخل المدينة (المدى القريب)</option>
+                        <option value="أطراف المدينة (دنانير التوصيل: 4 د.أ)">أطراف المدينة (المدى المتوسط)</option>
+                    </select>
                 </div>
             </div>
-            <div class="border-t border-[var(--line)] pt-4">
-                <div class="flex justify-between font-bold text-lg mb-4">
-                    <span>الإجمالي</span>
-                    <span id="cart-total">0 د.أ</span>
+
+            <div class="border-t border-[var(--line)] pt-4 mt-4">
+                <div class="flex justify-between font-black text-lg mb-4">
+                    <span>الإجمالي النهائي:</span>
+                    <span id="cart-total" class="text-[var(--primary)]">0 د.أ</span>
                 </div>
-                <button onclick="alert('تم إرسال الطلب بنجاح!')" class="w-full bg-[var(--copper)] text-white py-3 rounded-xl font-bold shadow">إتمام الطلب</button>
+                <button onclick="checkoutOrder()" class="w-full bg-[var(--primary)] text-white py-3 rounded-xl font-bold shadow-lg hover:opacity-90 transition">تأكيد وإرسال الطلب</button>
             </div>
         </div>
     </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
-        import { getFirestore, collection, getDocs, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyCb09c67UUqwwLr-vULeTkHqQR2li7AASI",
@@ -110,24 +134,7 @@
 
         let cart = [];
         let productsList = [];
-
-        async function loadSettings() {
-            try {
-                const sDoc = await getDoc(doc(db, "settings", "general"));
-                if (sDoc.exists()) {
-                    const data = sDoc.data();
-                    if(data.storeName) document.getElementById('store-title').innerText = data.storeName;
-                    if(data.storeLogo) {
-                        const logoEl = document.getElementById('store-logo');
-                        logoEl.src = data.storeLogo;
-                        logoEl.classList.remove('hidden');
-                    }
-                    if(data.storeTheme) {
-                        document.body.className = data.storeTheme.includes('900') ? 'dark' : '';
-                    }
-                }
-            } catch(e) {}
-        }
+        let currentCategory = 'الكل';
 
         async function loadProducts() {
             const grid = document.getElementById('products-grid');
@@ -135,7 +142,7 @@
             try {
                 const querySnapshot = await getDocs(collection(db, "products"));
                 if (querySnapshot.empty) {
-                    grid.innerHTML = '<p class="text-center col-span-full text-[var(--muted)]">لا توجد منتجات متاحة حالياً.</p>';
+                    grid.innerHTML = '<p class="text-center col-span-full text-[var(--muted)] py-10">لا توجد منتجات متاحة حالياً. أضفها من لوحة التحكم!</p>';
                     return;
                 }
                 productsList = [];
@@ -143,36 +150,75 @@
                     const p = document.data();
                     p.id = document.id;
                     productsList.push(p);
-                    
-                    grid.innerHTML += `
-                        <div class="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-4 flex flex-col justify-between shadow-sm">
-                            <div>
-                                <div class="flex justify-between items-start mb-3">
-                                    <span class="text-xs bg-[var(--panel-2)] border border-[var(--line)] px-2 py-1 rounded-lg text-[var(--muted)]">قطعة أصلية</span>
-                                    <i class="fa-solid fa-mobile-screen text-2xl text-[var(--muted)]"></i>
-                                </div>
-                                <h3 class="font-bold text-sm mb-1">${p.name}</h3>
-                                <p class="text-xs text-[var(--muted)] mb-3">${p.description || ''}</p>
-                            </div>
-                            <div class="flex justify-between items-center mt-4 pt-3 border-t border-[var(--line)]">
-                                <div>
-                                    <span class="font-black text-[var(--copper)]">${p.finalPrice || p.price} د.أ</span>
-                                    ${p.discount ? `<span class="text-xs line-through text-gray-500 mr-2">${p.price}</span>` : ''}
-                                </div>
-                                <button onclick="addToCart('${p.id}')" class="bg-[var(--copper)] text-white w-8 h-8 rounded-xl font-bold flex items-center justify-center hover:opacity-90">+</button>
-                            </div>
-                        </div>
-                    `;
                 });
+                renderFilteredProducts();
             } catch (err) {
-                grid.innerHTML = '<p class="text-center col-span-full text-red-500">خطأ في تحميل المنتجات</p>';
+                grid.innerHTML = '<p class="text-center col-span-full text-red-500 py-10">خطأ في الاتصال بقاعدة البيانات</p>';
             }
+        }
+
+        function renderFilteredProducts() {
+            const grid = document.getElementById('products-grid');
+            grid.innerHTML = '';
+
+            const filtered = currentCategory === 'الكل' ? productsList : productsList.filter(p => p.cat === currentCategory);
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '<p class="text-center col-span-full text-[var(--muted)] py-10">لا توجد منتجات في هذا القسم حالياً.</p>';
+                return;
+            }
+
+            filtered.forEach(p => {
+                let statusBadge = '';
+                if(p.status === 'متوفر') statusBadge = '<span class="text-[10px] bg-green-500/10 text-green-500 font-bold px-2 py-0.5 rounded-full border border-green-500/20">متوفر</span>';
+                else if(p.status === 'متوفر بكميات محدودة') statusBadge = '<span class="text-[10px] bg-yellow-500/10 text-yellow-500 font-bold px-2 py-0.5 rounded-full border border-yellow-500/20">كمية محدودة</span>';
+                else statusBadge = '<span class="text-[10px] bg-red-500/10 text-red-500 font-bold px-2 py-0.5 rounded-full border border-red-500/20">منتهي</span>';
+
+                let discountBadge = p.discount ? `<span class="text-[10px] bg-red-600 text-white font-bold px-1.5 py-0.5 rounded">خصم ${p.discount}%</span>` : '';
+
+                grid.innerHTML += `
+                    <div class="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-4 flex flex-col justify-between shadow-sm hover:border-[var(--primary)] transition duration-200">
+                        <div>
+                            <div class="h-36 bg-[var(--panel-2)] rounded-xl mb-3 flex items-center justify-center overflow-hidden border border-[var(--line)] relative">
+                                ${p.image ? `<img src="${p.image}" class="w-full h-full object-cover">` : `<i class="fa-solid fa-microchip text-3xl text-[var(--muted)]"></i>`}
+                                <div class="absolute top-2 right-2">${statusBadge}</div>
+                                <div class="absolute top-2 left-2">${discountBadge}</div>
+                            </div>
+                            <span class="text-[10px] text-[var(--muted)] uppercase">${p.cat || 'قطع غيار'}</span>
+                            <h3 class="font-bold text-sm mb-1 line-clamp-1">${p.name}</h3>
+                            <p class="text-xs text-[var(--muted)] mb-3 line-clamp-2">${p.description || ''}</p>
+                        </div>
+                        <div class="flex justify-between items-center mt-2 pt-3 border-t border-[var(--line)]">
+                            <div>
+                                <span class="font-black text-[var(--primary)] text-base">${p.finalPrice || p.price} د.أ</span>
+                                ${p.discount ? `<span class="text-xs line-through text-[var(--muted)] mr-1">${p.price}</span>` : ''}
+                            </div>
+                            <button onclick="addToCart('${p.id}')" class="bg-[var(--primary)] text-white w-9 h-9 rounded-xl font-bold flex items-center justify-center hover:opacity-90 shadow transition">
+                                <i class="fa-solid fa-plus text-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        window.filterCategory = function(cat) {
+            currentCategory = cat;
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                if(btn.innerText.includes(cat)) {
+                    btn.className = "cat-btn active px-4 py-2 rounded-xl text-sm font-bold bg-[var(--primary)] text-white shadow";
+                } else {
+                    btn.className = "cat-btn px-4 py-2 rounded-xl text-sm font-bold bg-[var(--panel-2)] border border-[var(--line)] hover:border-red-500 transition";
+                }
+            });
+            renderFilteredProducts();
         }
 
         window.addToCart = function(id) {
             const product = productsList.find(p => p.id === id);
             cart.push(product);
             updateCart();
+            toggleCart(); // فتح السلة تلقائياً لإظهار الإضافة
         }
 
         function updateCart() {
@@ -181,7 +227,7 @@
             container.innerHTML = '';
             
             if(cart.length === 0) {
-                container.innerHTML = '<p class="text-center text-[var(--muted)]">السلة فارغة حالياً</p>';
+                container.innerHTML = '<p class="text-center text-[var(--muted)] py-6">السلة فارغة حالياً</p>';
                 document.getElementById('cart-total').innerText = '0 د.أ';
                 return;
             }
@@ -192,11 +238,16 @@
                 total += price;
                 container.innerHTML += `
                     <div class="flex justify-between items-center bg-[var(--panel-2)] p-3 rounded-xl border border-[var(--line)]">
-                        <div>
-                            <h4 class="font-bold text-sm">${item.name}</h4>
-                            <span class="text-xs text-[var(--copper)]">${price} د.أ</span>
+                        <div class="flex items-center space-x-3 space-x-reverse">
+                            <div class="w-10 h-10 bg-gray-700 rounded-lg overflow-hidden flex items-center justify-center">
+                                ${item.image ? `<img src="${item.image}" class="w-full h-full object-cover">` : `<i class="fa-solid fa-box text-xs text-white"></i>`}
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xs line-clamp-1">${item.name}</h4>
+                                <span class="text-[10px] text-[var(--primary)] font-bold">${price} د.أ</span>
+                            </div>
                         </div>
-                        <button onclick="removeFromCart(${index})" class="text-[var(--warn)] text-xs font-bold">حذف</button>
+                        <button onclick="removeFromCart(${index})" class="text-red-500 text-xs font-bold hover:underline">حذف</button>
                     </div>
                 `;
             });
@@ -212,7 +263,28 @@
             document.getElementById('cart-drawer').classList.toggle('hidden');
         }
 
-        loadSettings();
+        window.toggleDarkMode = function() {
+            document.body.classList.toggle('dark');
+            const icon = event.currentTarget.querySelector('i');
+            if(document.body.classList.contains('dark')) {
+                icon.className = "fa-solid fa-sun text-lg";
+            } else {
+                icon.className = "fa-solid fa-moon text-lg";
+            }
+        }
+
+        window.checkoutOrder = function() {
+            const location = document.getElementById('cust-location').value;
+            if(!location) {
+                alert('الرجاء إدخال موقع الاستلام أو العنوان!');
+                return;
+            }
+            alert('تم تأكيد طلبك بنجاح لدى مؤسسة صخر المصري! سيتم التواصل معك قريباً.');
+            cart = [];
+            updateCart();
+            toggleCart();
+        }
+
         loadProducts();
     </script>
 </body>
