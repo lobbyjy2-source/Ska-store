@@ -3,74 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SKA Store - لوحة التحكم الشاملة</title>
+    <title>مؤسسة صخر المصري - لوحة التحكم الاحترافية</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="bg-gray-900 text-white min-h-screen">
+    
     <nav class="bg-gray-800 border-b border-gray-700 p-4 flex justify-between items-center">
-        <h1 class="text-xl font-bold text-orange-500">لوحة التحكم الاحترافية ⚙️</h1>
-        <a href="index.html" target="_blank" class="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded text-sm font-bold">عرض المتجر 🌐</a>
+        <h1 class="text-xl font-bold text-orange-500">لوحة التحكم ⚙️</h1>
+        <a href="index.html" class="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded text-sm font-bold">عرض المتجر 🌐</a>
     </nav>
 
-    <div id="login-section" class="max-w-md mx-auto mt-16 bg-gray-800 p-6 rounded-lg border border-gray-700 shadow-xl">
-        <h2 class="text-2xl font-bold mb-6 text-center text-orange-400">تسجيل دخول المشرف</h2>
+    <div id="login-section" class="max-w-md mx-auto mt-20 bg-gray-800 p-6 rounded-2xl border border-gray-700 shadow-xl">
+        <h2 class="text-2xl font-bold mb-6 text-center text-orange-500">تسجيل دخول المشرف</h2>
         <form id="login-form" class="space-y-4">
-            <input type="email" id="email" placeholder="البريد الإلكتروني" required class="w-full p-3 bg-gray-900 border border-gray-700 rounded text-white focus:outline-none focus:border-orange-500">
-            <input type="password" id="password" placeholder="كلمة المرور" required class="w-full p-3 bg-gray-900 border border-gray-700 rounded text-white focus:outline-none focus:border-orange-500">
-            <button type="submit" class="w-full bg-orange-600 hover:bg-orange-700 p-3 rounded font-bold transition">دخول</button>
+            <div>
+                <label class="block text-sm text-gray-400 mb-1">البريد الإلكتروني</label>
+                <input type="email" id="email" required class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white focus:outline-none focus:border-orange-500" placeholder="admin@example.com">
+            </div>
+            <div>
+                <label class="block text-sm text-gray-400 mb-1">كلمة المرور</label>
+                <input type="password" id="password" required class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white focus:outline-none focus:border-orange-500" placeholder="••••••••">
+            </div>
+            <button type="submit" class="w-full bg-orange-600 hover:bg-orange-700 p-3 rounded-xl font-bold transition shadow">دخول للنظام</button>
         </form>
     </div>
 
-    <div id="admin-section" class="container mx-auto p-4 hidden space-y-8 mt-6">
+    <div id="admin-section" class="container mx-auto p-4 hidden space-y-6 mt-6">
         
-        <div class="bg-gray-800 p-6 rounded-lg border border-gray-700">
-            <h2 class="text-xl font-bold mb-4 text-orange-400">🎨 إعدادات المظهر والهوية</h2>
-            <form id="settings-form" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700">
+            <h2 class="text-xl font-bold mb-4 text-orange-400">🎨 إعدادات المتجر العامة</h2>
+            <form id="settings-form" class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                     <label class="block text-sm text-gray-400 mb-1">اسم المتجر</label>
-                    <input type="text" id="store-name-input" class="w-full p-2 bg-gray-900 border border-gray-700 rounded text-white" value="مؤسسة صخر المصري">
+                    <input type="text" id="store-name-input" class="w-full p-2 bg-gray-900 border border-gray-700 rounded-xl text-white" value="مؤسسة صخر المصري">
                 </div>
                 <div>
                     <label class="block text-sm text-gray-400 mb-1">رابط الشعار (Logo URL)</label>
-                    <input type="text" id="store-logo-input" class="w-full p-2 bg-gray-900 border border-gray-700 rounded text-white" placeholder="ضع رابط الصورة هنا">
+                    <input type="text" id="store-logo-input" class="w-full p-2 bg-gray-900 border border-gray-700 rounded-xl text-white" placeholder="https://example.com/logo.png">
                 </div>
-                <div>
-                    <label class="block text-sm text-gray-400 mb-1">لون خلفية الموقع</label>
-                    <select id="store-theme-input" class="w-full p-2 bg-gray-900 border border-gray-700 rounded text-white">
-                        <option value="bg-gray-900">داكن عميق (Dark)</option>
-                        <option value="bg-slate-900">سليتي أنيق (Slate)</option>
-                    </select>
-                </div>
-                <div class="md:col-span-3">
-                    <button type="submit" class="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded font-bold">حفظ إعدادات المتجر</button>
+                <div class="md:col-span-2">
+                    <button type="submit" class="bg-blue-600 hover:bg-blue-700 px-6 py-2.5 rounded-xl font-bold shadow">حفظ الإعدادات</button>
                 </div>
             </form>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="bg-gray-800 p-6 rounded-lg border border-gray-700">
-                <h2 class="text-xl font-bold mb-4 text-orange-400">📦 إضافة منتج جديد مع خصم</h2>
+            <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700">
+                <h2 class="text-xl font-bold mb-4 text-orange-400">📦 إضافة منتج جديد</h2>
                 <form id="product-form" class="space-y-3">
-                    <input type="text" id="p-name" placeholder="اسم المنتج" required class="w-full p-2 bg-gray-900 border border-gray-700 rounded text-white">
-                    <textarea id="p-desc" placeholder="وصف المنتج" class="w-full p-2 bg-gray-900 border border-gray-700 rounded text-white"></textarea>
+                    <input type="text" id="p-name" placeholder="اسم المنتج (مثال: شاشة آيفون)" required class="w-full p-2.5 bg-gray-900 border border-gray-700 rounded-xl text-white">
+                    <select id="p-cat" class="w-full p-2.5 bg-gray-900 border border-gray-700 rounded-xl text-white">
+                        <option value="شاشات">شاشات</option>
+                        <option value="بطاريات">بطاريات</option>
+                        <option value="أدوات صيانة">أدوات صيانة</option>
+                        <option value="كيبلات وإكسسوارات">كيبلات وإكسسوارات</option>
+                    </select>
+                    <textarea id="p-desc" placeholder="وصف المنتج أو حالة القطعة (موفر / أصلية)" class="w-full p-2.5 bg-gray-900 border border-gray-700 rounded-xl text-white"></textarea>
                     <div class="grid grid-cols-2 gap-2">
-                        <input type="number" id="p-price" placeholder="السعر الأساسي ($)" required class="w-full p-2 bg-gray-900 border border-gray-700 rounded text-white">
-                        <input type="number" id="p-discount" placeholder="نسبة الخصم % (اختياري)" class="w-full p-2 bg-gray-900 border border-gray-700 rounded text-white">
+                        <input type="number" id="p-price" placeholder="السعر (د.أ)" required class="w-full p-2.5 bg-gray-900 border border-gray-700 rounded-xl text-white">
+                        <input type="number" id="p-discount" placeholder="نسبة الخصم % (اختياري)" class="w-full p-2.5 bg-gray-900 border border-gray-700 rounded-xl text-white">
                     </div>
-                    <button type="submit" class="w-full bg-green-600 hover:bg-green-700 p-2 rounded font-bold">إضافة المنتج للقاعدة</button>
+                    <button type="submit" class="w-full bg-green-600 hover:bg-green-700 p-3 rounded-xl font-bold shadow">إضافة للمتجر</button>
                 </form>
             </div>
 
-            <div class="bg-gray-800 p-6 rounded-lg border border-gray-700">
-                <h2 class="text-xl font-bold mb-4 text-orange-400">🗑️ المنتجات الحالية (للحذف)</h2>
-                <div id="admin-products-list" class="space-y-2 max-h-64 overflow-y-auto pr-2">
-                    <p class="text-gray-400 text-sm">جاري تحميل المنتجات...</p>
+            <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700">
+                <h2 class="text-xl font-bold mb-4 text-orange-400">🗑️ قائمة المنتجات (للحذف والتعديل)</h2>
+                <div id="admin-products-list" class="space-y-2 max-h-72 overflow-y-auto pr-2">
+                    <p class="text-gray-400 text-sm">جاري التحميل...</p>
                 </div>
             </div>
         </div>
 
-        <div class="text-center pt-4">
-            <button id="logout-btn" class="bg-red-600 hover:bg-red-700 px-8 py-2 rounded font-bold">تسجيل الخروج من لوحة التحكم</button>
+        <div class="text-center pt-2">
+            <button id="logout-btn" class="bg-red-600 hover:bg-red-700 px-8 py-2.5 rounded-xl font-bold shadow">تسجيل الخروج</button>
         </div>
     </div>
 
@@ -120,13 +127,14 @@
                 await signInWithEmailAndPassword(auth, email, password);
                 alert('تم تسجيل الدخول بنجاح!');
             } catch (error) {
-                alert('خطأ في البيانات: ' + error.message);
+                alert('خطأ في البريد أو كلمة المرور: ' + error.message);
             }
         });
 
         productForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const name = document.getElementById('p-name').value;
+            const cat = document.getElementById('p-cat').value;
             const description = document.getElementById('p-desc').value;
             const price = Number(document.getElementById('p-price').value);
             const discount = Number(document.getElementById('p-discount').value) || 0;
@@ -134,17 +142,18 @@
             try {
                 await addDoc(collection(db, "products"), {
                     name,
+                    cat,
                     description,
                     price,
                     discount,
                     finalPrice: discount > 0 ? price - (price * discount / 100) : price,
                     createdAt: new Date()
                 });
-                alert('تمت إضافة المنتج والخصم بنجاح!');
+                alert('تمت إضافة المنتج بنجاح!');
                 productForm.reset();
                 loadAdminProducts();
             } catch (error) {
-                alert('خطأ: ' + error.message);
+                alert('خطأ في الإضافة: ' + error.message);
             }
         });
 
@@ -155,7 +164,7 @@
                     alert('تم الحذف بنجاح');
                     loadAdminProducts();
                 } catch (err) {
-                    alert('خطأ بالحذف');
+                    alert('خطأ أثناء الحذف');
                 }
             }
         };
@@ -164,19 +173,18 @@
             adminProductsList.innerHTML = '';
             const querySnapshot = await getDocs(collection(db, "products"));
             if (querySnapshot.empty) {
-                adminProductsList.innerHTML = '<p class="text-gray-400 text-sm">لا توجد منتجات.</p>';
+                adminProductsList.innerHTML = '<p class="text-gray-400 text-sm">لا توجد منتجات حالياً.</p>';
                 return;
             }
             querySnapshot.forEach((document) => {
                 const p = document.data();
                 adminProductsList.innerHTML += `
-                    <div class="bg-gray-900 p-3 rounded flex justify-between items-center border border-gray-700">
+                    <div class="bg-gray-900 p-3 rounded-xl flex justify-between items-center border border-gray-700">
                         <div>
-                            <h4 class="font-bold text-orange-400">${p.name}</h4>
-                            <span class="text-sm text-green-400">${p.finalPrice || p.price} $</span>
-                            ${p.discount ? `<span class="text-xs bg-red-600 px-1 rounded mr-2">خصم ${p.discount}%</span>` : ''}
+                            <h4 class="font-bold text-orange-400 text-sm">${p.name}</h4>
+                            <span class="text-xs text-green-400">${p.finalPrice || p.price} د.أ (${p.cat})</span>
                         </div>
-                        <button onclick="deleteProduct('${document.id}')" class="bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-xs">حذف</button>
+                        <button onclick="deleteProduct('${document.id}')" class="bg-red-600 hover:bg-red-700 px-3 py-1 rounded-lg text-xs font-bold">حذف</button>
                     </div>
                 `;
             });
@@ -186,17 +194,12 @@
             e.preventDefault();
             const storeName = document.getElementById('store-name-input').value;
             const storeLogo = document.getElementById('store-logo-input').value;
-            const storeTheme = document.getElementById('store-theme-input').value;
 
             try {
-                await setDoc(doc(db, "settings", "general"), {
-                    storeName,
-                    storeLogo,
-                    storeTheme
-                });
-                alert('تم حفظ إعدادات المظهر بنجاح!');
+                await setDoc(doc(db, "settings", "general"), { storeName, storeLogo });
+                alert('تم حفظ الإعدادات بنجاح!');
             } catch (err) {
-                alert('خطأ في حفظ الإعدادات');
+                alert('خطأ في الحفظ');
             }
         });
 
@@ -205,9 +208,8 @@
                 const sDoc = await getDoc(doc(db, "settings", "general"));
                 if (sDoc.exists()) {
                     const data = sDoc.data();
-                    document.getElementById('store-name-input').value = data.storeName || '';
-                    document.getElementById('store-logo-input').value = data.storeLogo || '';
-                    document.getElementById('store-theme-input').value = data.storeTheme || 'bg-gray-900';
+                    if(data.storeName) document.getElementById('store-name-input').value = data.storeName;
+                    if(data.storeLogo) document.getElementById('store-logo-input').value = data.storeLogo;
                 }
             } catch(e) {}
         }
