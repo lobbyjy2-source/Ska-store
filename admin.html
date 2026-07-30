@@ -7,13 +7,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-900 text-white min-h-screen">
-    <!-- شريط التنقل -->
     <nav class="bg-gray-800 border-b border-gray-700 p-4 flex justify-between items-center">
         <h1 class="text-xl font-bold text-orange-500">لوحة التحكم الاحترافية ⚙️</h1>
         <a href="index.html" target="_blank" class="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded text-sm font-bold">عرض المتجر 🌐</a>
     </nav>
 
-    <!-- شاشة تسجيل الدخول -->
     <div id="login-section" class="max-w-md mx-auto mt-16 bg-gray-800 p-6 rounded-lg border border-gray-700 shadow-xl">
         <h2 class="text-2xl font-bold mb-6 text-center text-orange-400">تسجيل دخول المشرف</h2>
         <form id="login-form" class="space-y-4">
@@ -23,16 +21,14 @@
         </form>
     </div>
 
-    <!-- لوحة الإدارة الكاملة (مخفية لحين تسجيل الدخول) -->
     <div id="admin-section" class="container mx-auto p-4 hidden space-y-8 mt-6">
         
-        <!-- 1. إعدادات المتجر العامة (الاسم، الشعار، الألوان) -->
         <div class="bg-gray-800 p-6 rounded-lg border border-gray-700">
             <h2 class="text-xl font-bold mb-4 text-orange-400">🎨 إعدادات المظهر والهوية</h2>
             <form id="settings-form" class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
                     <label class="block text-sm text-gray-400 mb-1">اسم المتجر</label>
-                    <input type="text" id="store-name-input" class="w-full p-2 bg-gray-900 border border-gray-700 rounded text-white" value="SKA Store">
+                    <input type="text" id="store-name-input" class="w-full p-2 bg-gray-900 border border-gray-700 rounded text-white" value="مؤسسة صخر المصري">
                 </div>
                 <div>
                     <label class="block text-sm text-gray-400 mb-1">رابط الشعار (Logo URL)</label>
@@ -43,7 +39,6 @@
                     <select id="store-theme-input" class="w-full p-2 bg-gray-900 border border-gray-700 rounded text-white">
                         <option value="bg-gray-900">داكن عميق (Dark)</option>
                         <option value="bg-slate-900">سليتي أنيق (Slate)</option>
-                        <option value="bg-zinc-900">فحمي (Zinc)</option>
                     </select>
                 </div>
                 <div class="md:col-span-3">
@@ -52,14 +47,12 @@
             </form>
         </div>
 
-        <!-- 2. إدارة المنتجات (إضافة وحذف وتعديل وخصومات) -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <!-- نموذج إضافة منتج -->
             <div class="bg-gray-800 p-6 rounded-lg border border-gray-700">
                 <h2 class="text-xl font-bold mb-4 text-orange-400">📦 إضافة منتج جديد مع خصم</h2>
                 <form id="product-form" class="space-y-3">
                     <input type="text" id="p-name" placeholder="اسم المنتج" required class="w-full p-2 bg-gray-900 border border-gray-700 rounded text-white">
-                    <textarea id="p-desc" placeholder="وصف المنتج" required class="w-full p-2 bg-gray-900 border border-gray-700 rounded text-white"></textarea>
+                    <textarea id="p-desc" placeholder="وصف المنتج" class="w-full p-2 bg-gray-900 border border-gray-700 rounded text-white"></textarea>
                     <div class="grid grid-cols-2 gap-2">
                         <input type="number" id="p-price" placeholder="السعر الأساسي ($)" required class="w-full p-2 bg-gray-900 border border-gray-700 rounded text-white">
                         <input type="number" id="p-discount" placeholder="نسبة الخصم % (اختياري)" class="w-full p-2 bg-gray-900 border border-gray-700 rounded text-white">
@@ -68,7 +61,6 @@
                 </form>
             </div>
 
-            <!-- قائمة المنتجات الحالية (للحذف) -->
             <div class="bg-gray-800 p-6 rounded-lg border border-gray-700">
                 <h2 class="text-xl font-bold mb-4 text-orange-400">🗑️ المنتجات الحالية (للحذف)</h2>
                 <div id="admin-products-list" class="space-y-2 max-h-64 overflow-y-auto pr-2">
@@ -77,34 +69,11 @@
             </div>
         </div>
 
-        <!-- 3. إعدادات الدفع وتسجيل الدخول -->
-        <div class="bg-gray-800 p-6 rounded-lg border border-gray-700">
-            <h2 class="text-xl font-bold mb-4 text-orange-400">💳 طرق الدفع وتسجيل الدخول المتاحة</h2>
-            <form id="methods-form" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="space-y-3">
-                    <h3 class="font-bold text-gray-300">طرق الدفع:</h3>
-                    <label class="flex items-center space-x-2 space-x-reverse"><input type="checkbox" id="pay-cash" checked class="rounded bg-gray-900"> <span>الدفع عند الاستلام (Cash)</span></label>
-                    <label class="flex items-center space-x-2 space-x-reverse"><input type="checkbox" id="pay-card" class="rounded bg-gray-900"> <span>البطاقات الائتمانية (Credit Card / Stripe)</span></label>
-                    <label class="flex items-center space-x-2 space-x-reverse"><input type="checkbox" id="pay-ZainCash" class="rounded bg-gray-900"> <span>محافظ إلكترونية (زين كاش / إي فواتيركم)</span></label>
-                </div>
-                <div class="space-y-3">
-                    <h3 class="font-bold text-gray-300">طرق تسجيل الدخول للعملاء:</h3>
-                    <label class="flex items-center space-x-2 space-x-reverse"><input type="checkbox" id="auth-email" checked class="rounded bg-gray-900"> <span>البريد الإلكتروني وكلمة المرور</span></label>
-                    <label class="flex items-center space-x-2 space-x-reverse"><input type="checkbox" id="auth-google" class="rounded bg-gray-900"> <span>تسجيل الدخول عبر Google</span></label>
-                    <label class="flex items-center space-x-2 space-x-reverse"><input type="checkbox" id="auth-phone" class="rounded bg-gray-900"> <span>رقم الهاتف (OTP)</span></label>
-                </div>
-                <div class="md:col-span-2">
-                    <button type="submit" class="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded font-bold">حفظ خيارات الدفع والدخول</button>
-                </div>
-            </form>
-        </div>
-
         <div class="text-center pt-4">
             <button id="logout-btn" class="bg-red-600 hover:bg-red-700 px-8 py-2 rounded font-bold">تسجيل الخروج من لوحة التحكم</button>
         </div>
     </div>
 
-    <!-- سكربت الربط والتحكم الكامل -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
@@ -128,11 +97,9 @@
         const loginForm = document.getElementById('login-form');
         const productForm = document.getElementById('product-form');
         const settingsForm = document.getElementById('settings-form');
-        const methodsForm = document.getElementById('methods-form');
         const logoutBtn = document.getElementById('logout-btn');
         const adminProductsList = document.getElementById('admin-products-list');
 
-        // مراقبة حالة المشرف
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 loginSection.classList.add('hidden');
@@ -145,7 +112,6 @@
             }
         });
 
-        // تسجيل الدخول
         loginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const email = document.getElementById('email').value;
@@ -158,7 +124,6 @@
             }
         });
 
-        // إضافة منتج جديد مع دعم الخصومات
         productForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const name = document.getElementById('p-name').value;
@@ -183,7 +148,6 @@
             }
         });
 
-        // جلب المنتجات لوحة التحكم (للحذف)
         window.deleteProduct = async function(id) {
             if (confirm('هل أنت متأكد من حذف هذا المنتج؟')) {
                 try {
@@ -218,7 +182,6 @@
             });
         }
 
-        // حفظ إعدادات المتجر (الاسم، الشعار، الألوان)
         settingsForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const storeName = document.getElementById('store-name-input').value;
@@ -237,26 +200,6 @@
             }
         });
 
-        // حفظ إعدادات الدفع وتسجيل الدخول
-        methodsForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const payCash = document.getElementById('pay-cash').checked;
-            const payCard = document.getElementById('pay-card').checked;
-            const payZain = document.getElementById('pay-ZainCash').checked;
-            const authEmail = document.getElementById('auth-email').checked;
-            const authGoogle = document.getElementById('auth-google').checked;
-            const authPhone = document.getElementById('auth-phone').checked;
-
-            try {
-                await setDoc(doc(db, "settings", "methods"), {
-                    payCash, payCard, payZain, authEmail, authGoogle, authPhone
-                });
-                alert('تم حفظ طرق الدفع وتسجيل الدخول بنجاح!');
-            } catch (err) {
-                alert('خطأ في الحفظ');
-            }
-        });
-
         async function loadSettings() {
             try {
                 const sDoc = await getDoc(doc(db, "settings", "general"));
@@ -269,7 +212,6 @@
             } catch(e) {}
         }
 
-        // تسجيل الخروج
         logoutBtn.addEventListener('click', () => {
             signOut(auth);
         });
