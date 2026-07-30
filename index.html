@@ -192,7 +192,6 @@
             try {
                 const querySnapshot = await getDocs(collection(db, "products"));
                 if (querySnapshot.empty) {
-                    // إضافة منتجات تجريبية تلقائية لأول مرة
                     await addDoc(collection(db, "products"), {
                         name: "شاشة آيفون 13 الأصلية", cat: "شاشات", status: "متوفر", description: "شاشة أصلية مع ضمان ضد العيوب المصنعية", price: 65, discount: 10, finalPrice: 58.5, image: "", createdAt: new Date()
                     });
@@ -278,7 +277,6 @@
             const product = productsList.find(p => p.id === id);
             cart.push(product);
             updateCart();
-            // تم إلغاء التنقل التلقائي للسلة بناءً على طلبك، السلة تتحدث بصمت فقط
         }
 
         function updateCart() {
@@ -304,4 +302,6 @@
                             </div>
                             <div>
                                 <h4 class="font-bold text-xs line-clamp-1">${item.name}</h4>
-          
+                                <span class="text-[10px] text-[var(--primary)] font-bold">${price} د.أ</span>
+                            </div>
+         
