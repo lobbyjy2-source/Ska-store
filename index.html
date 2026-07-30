@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مؤسسة صخر المصري | قطع غيار وصيانة الهواتف</title>
+    <title id="page-title">مؤسسة صخر المصري | قطع غيار وصيانة الهواتف</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -38,7 +38,7 @@
             <div class="flex items-center space-x-2 space-x-reverse">
                 <button onclick="toggleCart()" class="relative bg-[var(--primary)] text-white px-4 py-2 rounded-xl font-bold flex items-center space-x-2 space-x-reverse text-sm shadow-md hover:opacity-90 transition">
                     <i class="fa-solid fa-cart-shopping"></i>
-                    <span>السلة</span>
+                    <span id="txt-cart">السلة</span>
                     <span id="cart-count" class="bg-white text-[var(--primary)] text-xs px-2 py-0.5 rounded-full font-black">0</span>
                 </button>
                 <button onclick="toggleSettings()" class="bg-[var(--panel-2)] border border-[var(--line)] p-2.5 rounded-xl text-[var(--text)] hover:bg-[var(--line)] transition" title="الإعدادات">
@@ -51,7 +51,7 @@
 
             <div class="flex items-center space-x-3 space-x-reverse text-right">
                 <div>
-                    <h1 class="font-black text-base md:text-xl text-[var(--text)] tracking-wide">مؤسسة صخر المصري</h1>
+                    <h1 id="store-name" class="font-black text-base md:text-xl text-[var(--text)] tracking-wide">مؤسسة صخر المصري</h1>
                     <p class="text-[10px] text-[var(--primary)] font-bold tracking-widest uppercase">PHONE PARTS & MAINTENANCE</p>
                 </div>
                 <div class="w-11 h-11 bg-[var(--dark-box)] border border-red-500 rounded-xl flex items-center justify-center shadow-lg">
@@ -63,20 +63,20 @@
     </header>
 
     <section class="container mx-auto px-4 py-10 text-center border-b border-[var(--line)]">
-        <div class="inline-block bg-[var(--panel-2)] border border-[var(--line)] text-xs px-4 py-1.5 rounded-full text-[var(--primary)] font-bold mb-3 shadow-sm">
+        <div id="badge-welcome" class="inline-block bg-[var(--panel-2)] border border-[var(--line)] text-xs px-4 py-1.5 rounded-full text-[var(--primary)] font-bold mb-3 shadow-sm">
             ⭐ الجودة والاحترافية في صيانة الأجهزة
         </div>
-        <h2 class="text-2xl md:text-4xl font-black mt-1 mb-3">قطع غيار أصلية و <span class="text-[var(--primary)]">أدوات صيانة متطورة</span></h2>
-        <p class="text-sm text-[var(--muted)] max-w-xl mx-auto">شاشات، بطاريات، أدوات فك، وإكسسوارات لكل الهواتف بأسعار منافسة.</p>
+        <h2 id="hero-title" class="text-2xl md:text-4xl font-black mt-1 mb-3">قطع غيار أصلية و <span class="text-[var(--primary)]">أدوات صيانة متطورة</span></h2>
+        <p id="hero-desc" class="text-sm text-[var(--muted)] max-w-xl mx-auto">شاشات، بطاريات، أدوات فك، وإكسسوارات لكل الهواتف بأسعار منافسة.</p>
     </section>
 
     <main class="container mx-auto px-4 py-8">
         <div class="flex justify-center gap-2 mb-8 overflow-x-auto pb-2">
-            <button onclick="filterCategory('الكل')" class="cat-btn active px-4 py-2 rounded-xl text-sm font-bold bg-[var(--primary)] text-white shadow">الكل</button>
-            <button onclick="filterCategory('شاشات')" class="cat-btn px-4 py-2 rounded-xl text-sm font-bold bg-[var(--panel-2)] border border-[var(--line)] hover:border-red-500 transition">الشاشات</button>
-            <button onclick="filterCategory('بطاريات')" class="cat-btn px-4 py-2 rounded-xl text-sm font-bold bg-[var(--panel-2)] border border-[var(--line)] hover:border-red-500 transition">البطاريات</button>
-            <button onclick="filterCategory('أدوات صيانة')" class="cat-btn px-4 py-2 rounded-xl text-sm font-bold bg-[var(--panel-2)] border border-[var(--line)] hover:border-red-500 transition">أدوات صيانة</button>
-            <button onclick="filterCategory('كيبلات وإكسسوارات')" class="cat-btn px-4 py-2 rounded-xl text-sm font-bold bg-[var(--panel-2)] border border-[var(--line)] hover:border-red-500 transition">الإكسسوارات</button>
+            <button onclick="filterCategory('الكل')" class="cat-btn active px-4 py-2 rounded-xl text-sm font-bold bg-[var(--primary)] text-white shadow" data-cat="الكل">الكل</button>
+            <button onclick="filterCategory('شاشات')" class="cat-btn px-4 py-2 rounded-xl text-sm font-bold bg-[var(--panel-2)] border border-[var(--line)] hover:border-red-500 transition" data-cat="شاشات">الشاشات</button>
+            <button onclick="filterCategory('بطاريات')" class="cat-btn px-4 py-2 rounded-xl text-sm font-bold bg-[var(--panel-2)] border border-[var(--line)] hover:border-red-500 transition" data-cat="بطاريات">البطاريات</button>
+            <button onclick="filterCategory('أدوات صيانة')" class="cat-btn px-4 py-2 rounded-xl text-sm font-bold bg-[var(--panel-2)] border border-[var(--line)] hover:border-red-500 transition" data-cat="أدوات صيانة">أدوات صيانة</button>
+            <button onclick="filterCategory('كيبلات وإكسسوارات')" class="cat-btn px-4 py-2 rounded-xl text-sm font-bold bg-[var(--panel-2)] border border-[var(--line)] hover:border-red-500 transition" data-cat="كيبلات وإكسسوارات">الإكسسوارات</button>
         </div>
 
         <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
@@ -88,7 +88,7 @@
         <div class="bg-[var(--panel)] w-full max-w-md h-full p-6 flex flex-col justify-between border-l border-[var(--line)] shadow-2xl overflow-y-auto">
             <div>
                 <div class="flex justify-between items-center mb-6 border-b border-[var(--line)] pb-4">
-                    <h3 class="font-black text-lg text-[var(--primary)]"><i class="fa-solid fa-gear ml-2"></i> الإعدادات</h3>
+                    <h3 id="set-title" class="font-black text-lg text-[var(--primary)]"><i class="fa-solid fa-gear ml-2"></i> الإعدادات</h3>
                     <button onclick="toggleSettings()" class="text-2xl font-bold hover:text-red-500">&times;</button>
                 </div>
 
@@ -101,18 +101,18 @@
                 </div>
 
                 <div class="mb-5 flex justify-between items-center bg-[var(--panel-2)] p-3 rounded-xl border border-[var(--line)]">
-                    <span class="text-xs font-bold">الوضع الليلي (Dark Mode)</span>
+                    <span id="dark-lbl" class="text-xs font-bold">الوضع الليلي (Dark Mode)</span>
                     <button onclick="toggleDarkMode()" class="bg-[var(--primary)] text-white px-3 py-1.5 rounded-lg text-xs font-bold">تغيير</button>
                 </div>
 
                 <div class="mb-5 space-y-3 border-t border-[var(--line)] pt-4">
-                    <h4 class="font-bold text-xs text-[var(--text)]">بيانات المستخدم / الحساب:</h4>
+                    <h4 id="user-lbl" class="font-bold text-xs text-[var(--text)]">بيانات المستخدم / الحساب:</h4>
                     <input type="text" id="user-name" placeholder="الاسم الكامل" class="w-full p-2.5 bg-[var(--panel-2)] border border-[var(--line)] rounded-xl text-xs text-[var(--text)]">
                     <input type="text" id="user-phone" placeholder="رقم الهاتف" class="w-full p-2.5 bg-[var(--panel-2)] border border-[var(--line)] rounded-xl text-xs text-[var(--text)]">
                 </div>
 
                 <div class="border-t border-[var(--line)] pt-4 space-y-2">
-                    <h4 class="font-bold text-xs text-[var(--text)] mb-2">طريقة الدفع:</h4>
+                    <h4 id="pay-lbl" class="font-bold text-xs text-[var(--text)] mb-2">طريقة الدفع:</h4>
                     <label class="flex items-center space-x-2 space-x-reverse text-xs bg-[var(--panel-2)] p-2.5 rounded-xl border border-[var(--line)] cursor-pointer">
                         <input type="radio" name="payment" value="الدفع عند الاستلام" checked class="text-red-500">
                         <span>الدفع عند الاستلام</span>
@@ -137,7 +137,7 @@
             </div>
 
             <div class="pt-4 border-t border-[var(--line)] mt-4">
-                <button onclick="saveSettings()" class="w-full bg-[var(--primary)] text-white py-3 rounded-xl font-bold shadow text-xs">حفظ الإعدادات</button>
+                <button id="save-set-btn" onclick="saveSettings()" class="w-full bg-[var(--primary)] text-white py-3 rounded-xl font-bold shadow text-xs">حفظ الإعدادات</button>
             </div>
         </div>
     </div>
@@ -146,7 +146,7 @@
         <div class="bg-[var(--panel)] w-full max-w-md h-full p-6 flex flex-col justify-between border-l border-[var(--line)] shadow-2xl overflow-y-auto">
             <div>
                 <div class="flex justify-between items-center mb-6 border-b border-[var(--line)] pb-4">
-                    <h3 class="font-black text-lg text-[var(--primary)]"><i class="fa-solid fa-cart-shopping ml-2"></i> سلة الطلبات</h3>
+                    <h3 id="cart-title" class="font-black text-lg text-[var(--primary)]"><i class="fa-solid fa-cart-shopping ml-2"></i> سلة الطلبات</h3>
                     <button onclick="toggleCart()" class="text-2xl font-bold hover:text-red-500">&times;</button>
                 </div>
                 
@@ -157,17 +157,17 @@
 
             <div class="border-t border-[var(--line)] pt-4">
                 <div class="flex justify-between font-black text-lg mb-4">
-                    <span>الإجمالي النهائي:</span>
+                    <span id="total-lbl">الإجمالي النهائي:</span>
                     <span id="cart-total" class="text-[var(--primary)]">0 د.أ</span>
                 </div>
-                <button onclick="checkoutOrder()" class="w-full bg-[var(--primary)] text-white py-3 rounded-xl font-bold shadow-lg hover:opacity-90 transition">تأكيد الطلب وإرساله</button>
+                <button id="checkout-btn" onclick="checkoutOrder()" class="w-full bg-[var(--primary)] text-white py-3 rounded-xl font-bold shadow-lg hover:opacity-90 transition">تأكيد الطلب وإرساله</button>
             </div>
         </div>
     </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
-        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+        import { getFirestore, collection, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyCb09c67UUqwwLr-vULeTkHqQR2li7AASI",
@@ -184,6 +184,7 @@
         let cart = [];
         let productsList = [];
         let currentCategory = 'الكل';
+        let currentLang = 'ar';
 
         async function loadProducts() {
             const grid = document.getElementById('products-grid');
@@ -191,7 +192,17 @@
             try {
                 const querySnapshot = await getDocs(collection(db, "products"));
                 if (querySnapshot.empty) {
-                    grid.innerHTML = '<p class="text-center col-span-full text-[var(--muted)] py-10">لا توجد منتجات حالياً.</p>';
+                    // إضافة منتجات تجريبية تلقائية لأول مرة
+                    await addDoc(collection(db, "products"), {
+                        name: "شاشة آيفون 13 الأصلية", cat: "شاشات", status: "متوفر", description: "شاشة أصلية مع ضمان ضد العيوب المصنعية", price: 65, discount: 10, finalPrice: 58.5, image: "", createdAt: new Date()
+                    });
+                    await addDoc(collection(db, "products"), {
+                        name: "بطارية آيفون سعة عالية", cat: "بطاريات", status: "متوفر بكميات محدودة", description: "بطارية عالية الأداء تدوم طويلاً", price: 25, discount: 0, finalPrice: 25, image: "", createdAt: new Date()
+                    });
+                    await addDoc(collection(db, "products"), {
+                        name: "مفكات صيانة احترافية (طقم كامل)", cat: "أدوات صيانة", status: "متوفر", description: "أطقم مفكات دقيقة لفك كافة أنواع الهواتف", price: 15, discount: 5, finalPrice: 14.25, image: "", createdAt: new Date()
+                    });
+                    loadProducts();
                     return;
                 }
                 productsList = [];
@@ -212,17 +223,17 @@
             const filtered = currentCategory === 'الكل' ? productsList : productsList.filter(p => p.cat === currentCategory);
 
             if (filtered.length === 0) {
-                grid.innerHTML = '<p class="text-center col-span-full text-[var(--muted)] py-10">لا توجد منتجات في هذا القسم.</p>';
+                grid.innerHTML = `<p class="text-center col-span-full text-[var(--muted)] py-10">${currentLang === 'ar' ? 'لا توجد منتجات في هذا القسم.' : 'No products in this category.'}</p>`;
                 return;
             }
 
             filtered.forEach(p => {
                 let statusBadge = '';
-                if(p.status === 'متوفر') statusBadge = '<span class="text-[10px] bg-green-500/10 text-green-500 font-bold px-2 py-0.5 rounded-full border border-green-500/20">متوفر</span>';
-                else if(p.status === 'متوفر بكميات محدودة') statusBadge = '<span class="text-[10px] bg-yellow-500/10 text-yellow-500 font-bold px-2 py-0.5 rounded-full border border-yellow-500/20">كمية محدودة</span>';
-                else statusBadge = '<span class="text-[10px] bg-red-500/10 text-red-500 font-bold px-2 py-0.5 rounded-full border border-red-500/20">منتهي</span>';
+                if(p.status === 'متوفر') statusBadge = `<span class="text-[10px] bg-green-500/10 text-green-500 font-bold px-2 py-0.5 rounded-full border border-green-500/20">${currentLang === 'ar' ? 'متوفر' : 'Available'}</span>`;
+                else if(p.status === 'متوفر بكميات محدودة') statusBadge = `<span class="text-[10px] bg-yellow-500/10 text-yellow-500 font-bold px-2 py-0.5 rounded-full border border-yellow-500/20">${currentLang === 'ar' ? 'كمية محدودة' : 'Limited'}</span>`;
+                else statusBadge = `<span class="text-[10px] bg-red-500/10 text-red-500 font-bold px-2 py-0.5 rounded-full border border-red-500/20">${currentLang === 'ar' ? 'منتهي' : 'Out of Stock'}</span>`;
 
-                let discountBadge = p.discount ? `<span class="text-[10px] bg-red-600 text-white font-bold px-1.5 py-0.5 rounded">خصم ${p.discount}%</span>` : '';
+                let discountBadge = p.discount ? `<span class="text-[10px] bg-red-600 text-white font-bold px-1.5 py-0.5 rounded">${currentLang === 'ar' ? 'خصم ' + p.discount + '%' : p.discount + '% OFF'}</span>` : '';
 
                 grid.innerHTML += `
                     <div class="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-4 flex flex-col justify-between shadow-sm hover:border-[var(--primary)] transition">
@@ -232,7 +243,7 @@
                                 <div class="absolute top-2 right-2">${statusBadge}</div>
                                 <div class="absolute top-2 left-2">${discountBadge}</div>
                             </div>
-                            <span class="text-[10px] text-[var(--muted)] uppercase">${p.cat || 'قطع'}</span>
+                            <span class="text-[10px] text-[var(--muted)] uppercase">${p.cat || 'Parts'}</span>
                             <h3 class="font-bold text-sm mb-1 line-clamp-1">${p.name}</h3>
                             <p class="text-xs text-[var(--muted)] mb-3 line-clamp-2">${p.description || ''}</p>
                         </div>
@@ -241,8 +252,9 @@
                                 <span class="font-black text-[var(--primary)] text-base">${p.finalPrice || p.price} د.أ</span>
                                 ${p.discount ? `<span class="text-xs line-through text-[var(--muted)] mr-1">${p.price}</span>` : ''}
                             </div>
-                            <button onclick="addToCart('${p.id}')" class="bg-[var(--primary)] text-white w-9 h-9 rounded-xl font-bold flex items-center justify-center hover:opacity-90 shadow transition">
-                                <i class="fa-solid fa-plus text-sm"></i>
+                            <button onclick="addToCart('${p.id}')" class="bg-[var(--primary)] text-white px-3 py-1.5 rounded-xl font-bold flex items-center space-x-1.5 space-x-reverse text-xs hover:opacity-90 shadow transition">
+                                <i class="fa-solid fa-cart-plus text-xs"></i>
+                                <span>${currentLang === 'ar' ? 'شراء / Buy' : 'Buy'}</span>
                             </button>
                         </div>
                     </div>
@@ -253,7 +265,7 @@
         window.filterCategory = function(cat) {
             currentCategory = cat;
             document.querySelectorAll('.cat-btn').forEach(btn => {
-                if(btn.innerText.includes(cat)) {
+                if(btn.getAttribute('data-cat') === cat) {
                     btn.className = "cat-btn active px-4 py-2 rounded-xl text-sm font-bold bg-[var(--primary)] text-white shadow";
                 } else {
                     btn.className = "cat-btn px-4 py-2 rounded-xl text-sm font-bold bg-[var(--panel-2)] border border-[var(--line)] hover:border-red-500 transition";
@@ -266,7 +278,7 @@
             const product = productsList.find(p => p.id === id);
             cart.push(product);
             updateCart();
-            toggleCart();
+            // تم إلغاء التنقل التلقائي للسلة بناءً على طلبك، السلة تتحدث بصمت فقط
         }
 
         function updateCart() {
@@ -275,7 +287,7 @@
             container.innerHTML = '';
             
             if(cart.length === 0) {
-                container.innerHTML = '<p class="text-center text-[var(--muted)] py-6">السلة فارغة حالياً</p>';
+                container.innerHTML = `<p class="text-center text-[var(--muted)] py-6">${currentLang === 'ar' ? 'السلة فارغة حالياً' : 'Cart is empty'}</p>`;
                 document.getElementById('cart-total').innerText = '0 د.أ';
                 return;
             }
@@ -292,53 +304,4 @@
                             </div>
                             <div>
                                 <h4 class="font-bold text-xs line-clamp-1">${item.name}</h4>
-                                <span class="text-[10px] text-[var(--primary)] font-bold">${price} د.أ</span>
-                            </div>
-                        </div>
-                        <button onclick="removeFromCart(${index})" class="text-red-500 text-xs font-bold hover:underline">حذف</button>
-                    </div>
-                `;
-            });
-            document.getElementById('cart-total').innerText = total + ' د.أ';
-        }
-
-        window.removeFromCart = function(index) {
-            cart.splice(index, 1);
-            updateCart();
-        }
-
-        window.toggleCart = function() {
-            document.getElementById('cart-drawer').classList.toggle('hidden');
-        }
-
-        window.toggleSettings = function() {
-            document.getElementById('settings-drawer').classList.toggle('hidden');
-        }
-
-        window.toggleDarkMode = function() {
-            document.body.classList.toggle('dark');
-        }
-
-        window.setLang = function(lang) {
-            // صامت بدون alert
-        }
-
-        window.saveSettings = function() {
-            toggleSettings();
-        }
-
-        window.checkoutOrder = function() {
-            const name = document.getElementById('user-name').value;
-            if(!name) {
-                toggleSettings();
-                return;
-            }
-            cart = [];
-            updateCart();
-            toggleCart();
-        }
-
-        loadProducts();
-    </script>
-</body>
-</html>
+          
