@@ -3,153 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مؤسسة صخر المصري | لوحة التحكم الذهبية</title>
+    <title>لوحة التحكم | مؤسسة صخر المصري</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { background: #0A0A0A; color: #F9FAFB; font-family: system-ui, -apple-system, sans-serif; }
-        .gold-text { color: #D4AF37; }
-        .gold-border { border-color: #D4AF37; }
-        .gold-bg { background-color: #D4AF37; color: #000; }
-        .gold-bg:hover { background-color: #C5A028; }
-        .admin-ornament-box {
-            border: 2px solid #D4AF37;
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.12);
-            background-image: radial-gradient(circle at top right, rgba(212, 175, 55, 0.04), transparent 50%);
+        :root {
+            --bg: #0A0A0A;
+            --panel: #141414;
+            --panel-2: #1F1F1F;
+            --line: #2A2A2A;
+            --text: #F9FAFB;
+            --muted: #9CA3AF;
+            --primary: #EF4444;
         }
+        body { background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, sans-serif; }
     </style>
 </head>
-<body class="min-h-screen">
-    
-    <nav class="bg-[#141414] border-b gold-border p-4 flex justify-between items-center shadow-md">
-        <div class="flex items-center space-x-3 space-x-reverse">
-            <div class="w-9 h-9 bg-black border gold-border rounded-xl flex items-center justify-center">
-                <span class="gold-text font-black text-xs">SKA</span>
+<body class="p-4 md:p-8">
+
+    <div class="max-w-4xl mx-auto">
+        <!-- رأس لوحة التحكم -->
+        <div class="flex justify-between items-center mb-8 border-b border-[var(--line)] pb-4">
+            <div>
+                <h1 class="text-xl md:text-2xl font-black text-[var(--primary)] flex items-center">
+                    <i class="fa-solid fa-lock-open ml-2"></i> لوحة تحكم مؤسسة صخر المصري
+                </h1>
+                <p class="text-xs text-[var(--muted)] mt-1">إدارة المنتجات، تخصيص الهوية والألوان، وأوقات العمل</p>
             </div>
-            <h1 class="text-base font-bold gold-text">لوحة تحكم المشرف - مؤسسة صخر المصري ⚙️</h1>
+            <a href="index.html" class="bg-[var(--panel-2)] border border-[var(--line)] px-4 py-2 rounded-xl text-xs font-bold hover:bg-[var(--line)] transition flex items-center space-x-1.5 space-x-reverse">
+                <i class="fa-solid fa-store text-xs"></i>
+                <span>عرض المتجر</span>
+            </a>
         </div>
-        <a href="index.html" class="bg-[#1F1F1F] hover:bg-[#2A2A2A] border gold-border px-4 py-2 rounded-xl text-xs font-bold transition gold-text">عرض المتجر 🌐</a>
-    </nav>
 
-    <!-- صندوق تسجيل الدخول -->
-    <div id="login-section" class="max-w-md mx-auto mt-24 bg-[#141414] p-8 rounded-2xl admin-ornament-box">
-        <div class="text-center mb-6">
-            <div class="w-12 h-12 bg-black border gold-border rounded-2xl mx-auto flex items-center justify-center mb-3">
-                <i class="fa-solid fa-lock gold-text text-lg"></i>
-            </div>
-            <h2 class="text-xl font-black text-white">تسجيل دخول المشرف</h2>
-        </div>
-        
-        <div class="space-y-4">
-            <!-- زر جوجل الحقيقي -->
-            <button id="google-login-btn" class="w-full bg-white hover:bg-gray-100 text-gray-900 font-bold p-3 rounded-xl text-sm flex items-center justify-center space-x-2 space-x-reverse shadow-lg transition">
-                <i class="fa-brands fa-google text-red-600 text-lg ml-2"></i>
-                <span>تسجيل الدخول باستخدام جوجل (Google)</span>
-            </button>
-
-            <div class="relative flex py-2 items-center">
-                <div class="flex-grow border-t border-[#2A2A2A]"></div>
-                <span class="flex-shrink mx-4 text-gray-500 text-xs">أو بالطريقة التقليدية</span>
-                <div class="flex-grow border-t border-[#2A2A2A]"></div>
-            </div>
-
-            <form id="login-form" class="space-y-4">
-                <div>
-                    <label class="block text-xs text-gray-400 mb-1 font-bold">البريد الإلكتروني</label>
-                    <input type="email" id="email" required class="w-full p-3 bg-[#0A0A0A] border border-[#2A2A2A] rounded-xl text-sm text-white focus:outline-none focus:border-[#D4AF37] transition" placeholder="admin@ska.com">
-                </div>
-                <div>
-                    <label class="block text-xs text-gray-400 mb-1 font-bold">كلمة المرور</label>
-                    <input type="password" id="password" required class="w-full p-3 bg-[#0A0A0A] border border-[#2A2A2A] rounded-xl text-sm text-white focus:outline-none focus:border-[#D4AF37] transition" placeholder="••••••••">
-                </div>
-                <button type="submit" class="w-full gold-bg p-3 rounded-xl font-bold text-sm transition shadow-lg">دخول بالبريد</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- لوحة التحكم الفعلية -->
-    <div id="admin-section" class="container mx-auto p-4 md:p-8 hidden space-y-8 mt-4">
-        
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- تبويبات لوحة التحكم -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             
-            <div class="bg-[#141414] p-6 rounded-2xl admin-ornament-box">
-                <h2 class="text-lg font-black mb-4 gold-text flex items-center">
-                    <i class="fa-solid fa-box-archive ml-2"></i> إضافة منتج جديد
+            <!-- قسم تخصيص ألوان المتجر وأوقات العمل (الجديد) -->
+            <div class="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-5 shadow-xl">
+                <h2 class="font-black text-sm mb-4 text-[var(--primary)] flex items-center">
+                    <i class="fa-solid fa-palette ml-2"></i> إعدادات الهوية وأوقات العمل
                 </h2>
                 
-                <form id="product-form" class="space-y-4">
+                <div class="space-y-4">
                     <div>
-                        <label class="block text-xs text-gray-400 mb-1">اسم المنتج</label>
-                        <input type="text" id="p-name" placeholder="مثال: شاشة آيفون أصلية" required class="w-full p-3 bg-[#0A0A0A] border border-[#2A2A2A] rounded-xl text-sm text-white focus:border-[#D4AF37]">
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-3">
-                        <div>
-                            <label class="block text-xs text-gray-400 mb-1">القسم</label>
-                            <select id="p-cat" class="w-full p-3 bg-[#0A0A0A] border border-[#2A2A2A] rounded-xl text-sm text-white">
-                                <option value="شاشات">شاشات</option>
-                                <option value="بطاريات">بطاريات</option>
-                                <option value="أدوات صيانة">أدوات صيانة</option>
-                                <option value="كيبلات وإكسسوارات">كيبلات وإكسسوارات</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-xs text-gray-400 mb-1">حالة الكمية</label>
-                            <select id="p-status" class="w-full p-3 bg-[#0A0A0A] border border-[#2A2A2A] rounded-xl text-sm text-white">
-                                <option value="متوفر">متوفر</option>
-                                <option value="متوفر بكميات محدودة">متوفر بكميات محدودة</option>
-                                <option value="منتهي">منتهي</option>
-                            </select>
+                        <label class="block text-xs font-bold mb-1.5">اللون الرئيسي للموقع (Theme Color):</label>
+                        <div class="flex items-center space-x-3 space-x-reverse">
+                            <input type="color" id="shop-primary-color" value="#DC2626" class="w-12 h-10 bg-transparent rounded-xl cursor-pointer border border-[var(--line)]">
+                            <span class="text-xs text-[var(--muted)]">اختر اللون البارز للأزرار والعناصر (مثال: أحمر، أزرق، أخضر)</span>
                         </div>
                     </div>
 
                     <div>
-                        <label class="block text-xs text-gray-400 mb-1">اختر صورة المنتج من ملفات الجهاز</label>
-                        <input type="file" id="p-image-file" accept="image/*" class="w-full p-2.5 bg-[#0A0A0A] border border-[#2A2A2A] rounded-xl text-xs text-gray-300 file:bg-[#2A2A2A] file:text-white file:border-0 file:rounded-lg file:px-3 file:py-1">
+                        <label class="block text-xs font-bold mb-1.5">أوقات العمل الرسمية:</label>
+                        <input type="text" id="shop-working-hours" placeholder="السبت - الخميس: 10 صباحاً - 10 مساءً" class="w-full p-2.5 bg-[var(--panel-2)] border border-[var(--line)] rounded-xl text-xs text-[var(--text)] focus:border-red-500 outline-none">
                     </div>
 
-                    <div>
-                        <label class="block text-xs text-gray-400 mb-1">وصف المنتج</label>
-                        <textarea id="p-desc" placeholder="وصف القطعة..." class="w-full p-3 bg-[#0A0A0A] border border-[#2A2A2A] rounded-xl text-sm text-white h-20"></textarea>
+                    <button onclick="saveStoreSettings()" class="w-full bg-[var(--primary)] text-white py-2.5 rounded-xl font-bold text-xs shadow hover:opacity-95 transition">
+                        حفظ إعدادات المتجر
+                    </button>
+                </div>
+            </div>
+
+            <!-- قسم إضافة منتج جديد -->
+            <div class="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-5 shadow-xl">
+                <h2 class="font-black text-sm mb-4 text-[var(--primary)] flex items-center">
+                    <i class="fa-solid fa-plus-circle ml-2"></i> إضافة منتج جديد
+                </h2>
+                
+                <form id="product-form" class="space-y-3">
+                    <input type="text" id="p-name" placeholder="اسم المنتج (مثال: شاشة آيفون)" required class="w-full p-2.5 bg-[var(--panel-2)] border border-[var(--line)] rounded-xl text-xs text-[var(--text)] focus:border-red-500 outline-none">
+                    
+                    <select id="p-cat" class="w-full p-2.5 bg-[var(--panel-2)] border border-[var(--line)] rounded-xl text-xs text-[var(--text)] focus:border-red-500 outline-none">
+                        <option value="شاشات">شاشات</option>
+                        <option value="بطاريات">بطاريات</option>
+                        <option value="أدوات صيانة">أدوات صيانة</option>
+                        <option value="كيبلات وإكسسوارات">كيبلات وإكسسوارات</option>
+                    </select>
+
+                    <div class="grid grid-cols-2 gap-2">
+                        <input type="number" id="p-price" placeholder="السعر الأساسي (د.أ)" required class="p-2.5 bg-[var(--panel-2)] border border-[var(--line)] rounded-xl text-xs text-[var(--text)] focus:border-red-500 outline-none">
+                        <input type="number" id="p-discount" placeholder="نسبة الخصم % (اختياري)" class="p-2.5 bg-[var(--panel-2)] border border-[var(--line)] rounded-xl text-xs text-[var(--text)] focus:border-red-500 outline-none">
                     </div>
 
-                    <div class="grid grid-cols-2 gap-3">
-                        <div>
-                            <label class="block text-xs text-gray-400 mb-1">السعر (د.أ)</label>
-                            <input type="number" id="p-price" placeholder="50" required class="w-full p-3 bg-[#0A0A0A] border border-[#2A2A2A] rounded-xl text-sm text-white">
-                        </div>
-                        <div>
-                            <label class="block text-xs text-gray-400 mb-1">نسبة الخصم % (اختياري)</label>
-                            <input type="number" id="p-discount" placeholder="10" class="w-full p-3 bg-[#0A0A0A] border border-[#2A2A2A] rounded-xl text-sm text-white">
-                        </div>
-                    </div>
+                    <select id="p-status" class="w-full p-2.5 bg-[var(--panel-2)] border border-[var(--line)] rounded-xl text-xs text-[var(--text)] focus:border-red-500 outline-none">
+                        <option value="متوفر">متوفر</option>
+                        <option value="متوفر بكميات محدودة">متوفر بكميات محدودة</option>
+                        <option value="منتهي">منتهي</option>
+                    </select>
 
-                    <button type="submit" class="w-full gold-bg p-3 rounded-xl font-bold text-sm shadow transition">حفظ وإضافة للمتجر</button>
+                    <input type="text" id="p-image" placeholder="رابط صورة المنتج (URL)" class="w-full p-2.5 bg-[var(--panel-2)] border border-[var(--line)] rounded-xl text-xs text-[var(--text)] focus:border-red-500 outline-none">
+
+                    <button type="submit" id="submit-btn" class="w-full bg-[var(--primary)] text-white py-2.5 rounded-xl font-bold text-xs shadow hover:opacity-95 transition">
+                        إضافة المنتج للمتجر
+                    </button>
                 </form>
             </div>
 
-            <div class="bg-[#141414] p-6 rounded-2xl admin-ornament-box flex flex-col justify-between">
-                <div>
-                    <h2 class="text-lg font-black mb-4 gold-text flex items-center">
-                        <i class="fa-solid fa-list-check ml-2"></i> قائمة المنتجات الحالية
-                    </h2>
-                    <div id="admin-products-list" class="space-y-3 max-h-[450px] overflow-y-auto pr-1">
-                        <p class="text-gray-500 text-sm text-center py-10">جاري التحميل...</p>
-                    </div>
-                </div>
+        </div>
 
-                <div class="pt-6 border-t border-[#2A2A2A] mt-6 text-center">
-                    <button id="logout-btn" class="bg-red-600 hover:bg-red-700 px-6 py-2.5 rounded-xl font-bold text-xs transition text-white">تسجيل الخروج</button>
-                </div>
+        <!-- جدول المنتجات الحالية -->
+        <div class="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-5 shadow-xl">
+            <h2 class="font-black text-sm mb-4 text-[var(--text)] flex items-center">
+                <i class="fa-solid fa-boxes-stacked ml-2 text-[var(--primary)]"></i> المنتجات المسجلة حالياً
+            </h2>
+            <div class="overflow-x-auto">
+                <table class="w-full text-right text-xs">
+                    <thead>
+                        <tr class="border-b border-[var(--line)] text-[var(--muted)]">
+                            <th class="pb-3">المنتج</th>
+                            <th class="pb-3">القسم</th>
+                            <th class="pb-3">السعر</th>
+                            <th class="pb-3">الحالة</th>
+                            <th class="pb-3 text-center">إجراءات</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-products-list">
+                        <tr><td colspan="5" class="text-center py-4 text-[var(--muted)]">جاري تحميل المنتجات...</td></tr>
+                    </tbody>
+                </table>
             </div>
-
         </div>
     </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
-        import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+        import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc, updateDoc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyCb09c67UUqwwLr-vULeTkHqQR2li7AASI",
@@ -161,121 +140,102 @@
         };
 
         const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
         const db = getFirestore(app);
-        const googleProvider = new GoogleAuthProvider();
 
-        const loginSection = document.getElementById('login-section');
-        const adminSection = document.getElementById('admin-section');
-        const loginForm = document.getElementById('login-form');
-        const googleLoginBtn = document.getElementById('google-login-btn');
-        const productForm = document.getElementById('product-form');
-        const logoutBtn = document.getElementById('logout-btn');
-        const adminProductsList = document.getElementById('admin-products-list');
-
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                loginSection.classList.add('hidden');
-                adminSection.classList.remove('hidden');
-                loadAdminProducts();
-            } else {
-                loginSection.classList.remove('hidden');
-                adminSection.classList.add('hidden');
-            }
-        });
-
-        // تسجيل الدخول الحقيقي بـ Google
-        googleLoginBtn.addEventListener('click', async () => {
+        // تحميل الإعدادات المحفوظة مسبقاً في اللوحة
+        async function loadAdminSettings() {
             try {
-                await signInWithPopup(auth, googleProvider);
-            } catch (error) {
-                alert("فشل تسجيل الدخول بواسطة جوجل: " + error.message);
-            }
-        });
-
-        loginForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            try {
-                await signInWithEmailAndPassword(auth, email, password);
-            } catch (error) {
-                alert("خطأ في البيانات المدخلة");
-            }
-        });
-
-        productForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const name = document.getElementById('p-name').value;
-            const cat = document.getElementById('p-cat').value;
-            const status = document.getElementById('p-status').value;
-            const description = document.getElementById('p-desc').value;
-            const price = Number(document.getElementById('p-price').value);
-            const discount = Number(document.getElementById('p-discount').value) || 0;
-            const finalPrice = discount > 0 ? price - (price * discount / 100) : price;
-
-            const imageFile = document.getElementById('p-image-file').files[0];
-
-            if (imageFile) {
-                const reader = new FileReader();
-                reader.onload = async function(uploadEvent) {
-                    const base64Image = uploadEvent.target.result;
-                    await saveProductToDb(name, cat, status, description, price, discount, finalPrice, base64Image);
-                };
-                reader.readAsDataURL(imageFile);
-            } else {
-                await saveProductToDb(name, cat, status, description, price, discount, finalPrice, '');
-            }
-        });
-
-        async function saveProductToDb(name, cat, status, description, price, discount, finalPrice, image) {
-            try {
-                await addDoc(collection(db, "products"), {
-                    name, cat, status, description, price, discount, finalPrice, image, createdAt: new Date()
-                });
-                productForm.reset();
-                loadAdminProducts();
-            } catch (error) {}
+                const docRef = doc(db, "settings", "store_config");
+                const docSnap = await getDoc(docRef);
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    if(data.primaryColor) document.getElementById('shop-primary-color').value = data.primaryColor;
+                    if(data.workingHours) document.getElementById('shop-working-hours').value = data.workingHours;
+                }
+            } catch(e) { console.log(e); }
         }
 
-        window.deleteProduct = async function(id) {
-            try {
-                await deleteDoc(doc(db, "products", id));
-                loadAdminProducts();
-            } catch (err) {}
-        };
+        window.saveStoreSettings = async function() {
+            const primaryColor = document.getElementById('shop-primary-color').value;
+            const workingHours = document.getElementById('shop-working-hours').value;
 
-        async function loadAdminProducts() {
-            adminProductsList.innerHTML = '';
+            try {
+                await setDoc(doc(db, "settings", "store_config"), {
+                    primaryColor: primaryColor,
+                    workingHours: workingHours
+                }, { merge: true });
+                alert("✨ تم حفظ إعدادات وتصاميم المتجر بنجاح وتطبيقها على الفور!");
+            } catch(e) {
+                alert("خطأ أثناء الحفظ: " + e.message);
+            }
+        }
+
+        async function fetchAdminProducts() {
+            const tbody = document.getElementById('admin-products-list');
+            tbody.innerHTML = '';
             try {
                 const querySnapshot = await getDocs(collection(db, "products"));
                 if (querySnapshot.empty) {
-                    adminProductsList.innerHTML = '<p class="text-gray-500 text-sm text-center py-6">لا توجد منتجات حالياً.</p>';
+                    tbody.innerHTML = `<tr><td colspan="5" class="text-center py-4 text-[var(--muted)]">لا توجد منتجات حالياً.</td></tr>`;
                     return;
                 }
                 querySnapshot.forEach((document) => {
                     const p = document.data();
-                    adminProductsList.innerHTML += `
-                        <div class="bg-[#0A0A0A] p-3 rounded-xl flex justify-between items-center border gold-border">
-                            <div class="flex items-center space-x-3 space-x-reverse">
-                                <div class="w-10 h-10 bg-gray-800 rounded-lg overflow-hidden flex items-center justify-center">
-                                    ${p.image ? `<img src="${p.image}" class="w-full h-full object-cover">` : `<i class="fa-solid fa-microchip text-xs gold-text"></i>`}
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-xs text-white line-clamp-1">${p.name}</h4>
-                                    <span class="text-[10px] gold-text font-bold">${p.finalPrice} د.أ (${p.cat})</span>
-                                </div>
-                            </div>
-                            <button onclick="deleteProduct('${document.id}')" class="bg-red-600 hover:bg-red-700 px-3 py-1.5 rounded-lg text-xs font-bold transition text-white">حذف</button>
-                        </div>
+                    const id = document.id;
+                    tbody.innerHTML += `
+                        <tr class="border-b border-[var(--line)] hover:bg-[var(--panel-2)] transition">
+                            <td class="py-3 font-bold">${p.name}</td>
+                            <td class="py-3 text-[var(--muted)]">${p.cat}</td>
+                            <td class="py-3 text-[var(--primary)] font-black">${p.finalPrice || p.price} د.أ</td>
+                            <td class="py-3">${p.status}</td>
+                            <td class="py-3 text-center">
+                                <button onclick="deleteProduct('${id}')" class="bg-red-500/10 text-red-500 px-3 py-1 rounded-lg font-bold hover:bg-red-500 hover:text-white transition">حذف</button>
+                            </td>
+                        </tr>
                     `;
                 });
-            } catch(e) {}
+            } catch(e) {
+                tbody.innerHTML = `<tr><td colspan="5" class="text-center py-4 text-red-500">خطأ في جلب المنتجات</td></tr>`;
+            }
         }
 
-        logoutBtn.addEventListener('click', () => {
-            signOut(auth);
+        document.getElementById('product-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('p-name').value;
+            const cat = document.getElementById('p-cat').value;
+            const price = parseFloat(document.getElementById('p-price').value);
+            const discount = parseFloat(document.getElementById('p-discount').value) || 0;
+            const status = document.getElementById('p-status').value;
+            const image = document.getElementById('p-image').value;
+
+            const finalPrice = discount > 0 ? price - (price * (discount / 100)) : price;
+
+            try {
+                await addDoc(collection(db, "products"), {
+                    name, cat, price, discount, finalPrice, status, image, createdAt: new Date()
+                });
+                alert("تمت إضافة المنتج بنجاح!");
+                document.getElementById('product-form').reset();
+                fetchAdminProducts();
+            } catch(err) {
+                alert("حدث خطأ أثناء الإضافة");
+            }
         });
+
+        window.deleteProduct = async function(id) {
+            if(confirm("هل أنت متأكد من حذف هذا المنتج؟")) {
+                try {
+                    await deleteDoc(doc(db, "products", id));
+                    fetchAdminProducts();
+                } catch(e) {
+                    alert("خطأ أثناء الحذف");
+                }
+            }
+        }
+
+        loadAdminSettings();
+        fetchAdminProducts();
     </script>
 </body>
 </html>
+
