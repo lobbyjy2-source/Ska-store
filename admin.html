@@ -25,7 +25,6 @@
         }
         body { background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, sans-serif; transition: background .3s, color .3s; }
         
-        /* الزخارف والإطار الذهبي الخاص بالأدمن */
         .admin-gold-box {
             border: 2px solid #D4AF37;
             box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
@@ -228,7 +227,7 @@
             } catch (error) {}
         }
 
-        window.deleteProduct = async function(id) {
+        window.deleteProduct = async function(id, name) {
             try {
                 await deleteDoc(doc(db, "products", id));
                 loadAdminProducts();
