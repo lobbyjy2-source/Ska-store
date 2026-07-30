@@ -1,567 +1,78 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>مؤسسة صخر المصري | قطع غيار وصيانة الهواتف</title>
-<style>
-  :root{
-    --bg: #FFFFFF;
-    --panel: #FFFFFF;
-    --panel-2: #F2F2F2;
-    --line: #DDDDDD;
-    --text: #111111;
-    --muted: #666666;
-    --copper: #C8102E;
-    --copper-dim: #8F0C20;
-    --teal: #111111;
-    --warn: #8F0C20;
-  }
-  body.dark{
-    --bg: #141414;
-    --panel: #1C1C1C;
-    --panel-2: #242424;
-    --line: #333333;
-    --text: #F5F5F5;
-    --muted: #999999;
-    --copper: #E8394F;
-    --copper-dim: #A3182B;
-    --teal: #F5F5F5;
-    --warn: #FF5C5C;
-  }
-  body{ transition: background .2s, color .2s; }
-  *{ box-sizing:border-box; margin:0; padding:0; }
-  html{ scroll-behavior:smooth; }
-  body{
-    background:var(--bg);
-    color:var(--text);
-    font-family: 'Segoe UI', 'Tahoma', system-ui, sans-serif;
-    min-height:100vh;
-    overflow-x:hidden;
-  }
-  .mono{ font-family: 'Consolas', 'Courier New', monospace; letter-spacing:0.5px; }
-
-  /* HEADER */
-  header{
-    position:sticky; top:0; z-index:50;
-    background:rgba(35,38,43,0.92);
-    backdrop-filter:blur(6px);
-    border-bottom:1px solid var(--line);
-    display:flex; align-items:center; justify-content:space-between;
-    padding:14px 20px;
-  }
-  .logo{ display:flex; align-items:center; gap:10px; }
-  .logo-mark{
-    width:34px; height:34px; border-radius:6px;
-    background:linear-gradient(135deg, var(--copper), var(--copper-dim));
-    display:flex; align-items:center; justify-content:center;
-    font-weight:800; color:#FFFFFF; font-size:16px;
-  }
-  .logo-text{ font-weight:700; font-size:17px; }
-  .logo-sub{ font-size:11px; color:var(--muted); letter-spacing:1px; }
-  .cart-btn{
-    display:flex; align-items:center; gap:8px;
-    background:var(--panel-2); border:1px solid var(--line);
-    color:var(--text); padding:9px 14px; border-radius:8px;
-    cursor:pointer; font-size:14px; transition:.2s;
-  }
-  .cart-btn:hover{ border-color:var(--copper); }
-  .cart-count{
-    background:var(--copper); color:#FFFFFF; font-weight:700;
-    border-radius:999px; min-width:20px; height:20px; font-size:12px;
-    display:flex; align-items:center; justify-content:center; padding:0 5px;
-  }
-
-  /* HERO */
-  .hero{
-    position:relative;
-    padding:56px 20px 40px;
-    background:
-      radial-gradient(circle at 85% 20%, rgba(200,16,46,0.08), transparent 45%),
-      radial-gradient(circle at 10% 90%, rgba(0,0,0,0.05), transparent 40%);
-    border-bottom:1px dashed var(--line);
-  }
-  .ticket{
-    max-width:720px; margin:0 auto;
-    background:var(--panel);
-    border:1px solid var(--line);
-    border-radius:10px;
-    padding:26px 24px;
-    position:relative;
-  }
-  .ticket::before, .ticket::after{
-    content:""; position:absolute; width:20px; height:20px;
-    background:var(--bg); border-radius:50%; top:50%; transform:translateY(-50%);
-  }
-  .ticket::before{ right:-11px; }
-  .ticket::after{ left:-11px; }
-  .ticket-row{
-    display:flex; justify-content:space-between; align-items:center;
-    font-size:11px; color:var(--muted); margin-bottom:14px;
-    border-bottom:1px dashed var(--line); padding-bottom:10px;
-  }
-  .status-dot{ width:8px; height:8px; border-radius:50%; background:var(--teal); display:inline-block; margin-left:6px; }
-  h1{ font-size:clamp(24px,4vw,34px); line-height:1.35; margin-bottom:10px; }
-  h1 span{ color:var(--copper); }
-  .hero p{ color:var(--muted); font-size:15px; max-width:520px; margin-bottom:20px; }
-  .hero-actions{ display:flex; gap:10px; flex-wrap:wrap; }
-  .btn-primary{
-    background:var(--copper); color:#FFFFFF; border:none;
-    padding:12px 22px; border-radius:8px; font-weight:700; font-size:14px;
-    cursor:pointer; transition:.2s;
-  }
-  .btn-primary:hover{ background:#A30D24; }
-  .btn-ghost{
-    background:transparent; color:var(--text); border:1px solid var(--line);
-    padding:12px 22px; border-radius:8px; font-size:14px; cursor:pointer;
-  }
-  .btn-ghost:hover{ border-color:var(--teal); }
-
-  /* CATEGORY TABS */
-  .tabs{
-    max-width:1000px; margin:0 auto; padding:22px 20px 6px;
-    display:flex; gap:8px; flex-wrap:wrap; justify-content:center;
-  }
-  .tab{
-    background:var(--panel); border:1px solid var(--line); color:var(--muted);
-    padding:8px 16px; border-radius:999px; font-size:13px; cursor:pointer; transition:.2s;
-    display:flex; align-items:center; gap:6px;
-  }
-  .tab.active{ border-color:var(--copper); color:var(--text); background:var(--panel-2); }
-  .tab:hover{ color:var(--text); }
-
-  /* GRID */
-  .grid{
-    max-width:1000px; margin:0 auto; padding:20px;
-    display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:16px;
-  }
-  .card{
-    background:var(--panel); border:1px solid var(--line); border-radius:10px;
-    overflow:hidden; position:relative; transition:.2s;
-  }
-  .card:hover{ border-color:var(--copper-dim); transform:translateY(-2px); }
-  .card-image{
-    height:120px; background:var(--panel-2);
-    display:flex; align-items:center; justify-content:center;
-    border-bottom:1px solid var(--line);
-  }
-  .card-perf{
-    height:1px; border-top:2px dashed var(--line); margin:0 14px;
-  }
-  .card-top{ padding:16px 16px 10px; }
-  .cat-icon{
-    width:36px; height:36px; border-radius:8px; background:var(--panel-2);
-    display:flex; align-items:center; justify-content:center; margin-bottom:10px;
-    color:var(--teal);
-  }
-  .card-title{ font-size:15px; font-weight:600; margin-bottom:4px; }
-  .card-sku{ font-size:11px; color:var(--muted); }
-  .card-body{ padding:12px 16px 16px; display:flex; justify-content:space-between; align-items:center; }
-  .price{ font-weight:700; color:var(--copper); font-size:16px; }
-  .stock{ font-size:11px; color:var(--teal); }
-  .stock.low{ color:var(--warn); }
-  .add-btn{
-    background:var(--panel-2); border:1px solid var(--line); color:var(--text);
-    width:34px; height:34px; border-radius:8px; cursor:pointer; font-size:18px;
-    display:flex; align-items:center; justify-content:center; transition:.2s;
-  }
-  .add-btn:hover{ background:var(--copper); color:#FFFFFF; border-color:var(--copper); }
-
-  /* CART DRAWER */
-  .overlay{
-    position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:90;
-    opacity:0; pointer-events:none; transition:.25s;
-  }
-  .overlay.open{ opacity:1; pointer-events:all; }
-  .drawer{
-    position:fixed; top:0; right:-380px; width:340px; max-width:88vw; height:100%;
-    background:var(--panel); border-left:1px solid var(--line); z-index:95;
-    transition:.3s ease; display:flex; flex-direction:column;
-  }
-  .drawer.open{ right:0; }
-  .drawer-head{
-    padding:18px 18px 14px; border-bottom:1px dashed var(--line);
-    display:flex; justify-content:space-between; align-items:center;
-  }
-  .drawer-head h3{ font-size:16px; }
-  .close-x{ background:none; border:none; color:var(--muted); font-size:20px; cursor:pointer; }
-  .drawer-items{ flex:1; overflow-y:auto; padding:12px 18px; }
-  .cart-item{
-    display:flex; justify-content:space-between; align-items:center;
-    padding:12px 0; border-bottom:1px solid var(--line); gap:8px;
-  }
-  .ci-info{ font-size:13px; }
-  .ci-sku{ font-size:10px; color:var(--muted); }
-  .ci-qty{ display:flex; align-items:center; gap:8px; }
-  .qty-btn{
-    width:22px; height:22px; border-radius:5px; background:var(--panel-2); border:1px solid var(--line);
-    color:var(--text); cursor:pointer; font-size:14px; display:flex; align-items:center; justify-content:center;
-  }
-  .empty-cart{ color:var(--muted); font-size:13px; text-align:center; padding:40px 10px; }
-  .drawer-foot{ padding:16px 18px; border-top:1px dashed var(--line); }
-  .total-row{ display:flex; justify-content:space-between; margin-bottom:12px; font-size:14px; }
-  .total-row b{ color:var(--copper); font-size:17px; }
-  .checkout-btn{
-    width:100%; background:var(--copper); color:#FFFFFF; border:none;
-    padding:12px; border-radius:8px; font-weight:700; cursor:pointer; font-size:14px;
-  }
-  .checkout-btn:disabled{ opacity:0.4; cursor:not-allowed; }
-
-  /* SETTINGS */
-  .settings-section{
-    padding:16px 0; border-bottom:1px solid var(--line);
-  }
-  .settings-section:last-child{ border-bottom:none; }
-  .settings-label{ font-size:13px; font-weight:600; margin-bottom:10px; }
-  .segmented{ display:flex; background:var(--panel-2); border-radius:8px; padding:3px; gap:3px; }
-  .seg-btn{
-    flex:1; background:none; border:none; color:var(--muted); padding:8px 10px;
-    border-radius:6px; font-size:13px; cursor:pointer; transition:.2s;
-  }
-  .seg-btn.active{ background:var(--copper); color:#FFFFFF; }
-  .switch{ position:relative; display:inline-block; width:44px; height:24px; }
-  .switch input{ opacity:0; width:0; height:0; }
-  .slider{
-    position:absolute; cursor:pointer; inset:0; background:var(--panel-2);
-    border:1px solid var(--line); border-radius:999px; transition:.2s;
-  }
-  .slider::before{
-    content:""; position:absolute; height:16px; width:16px; right:3px; top:3px;
-    background:var(--muted); border-radius:50%; transition:.2s;
-  }
-  .switch input:checked + .slider{ background:var(--copper); border-color:var(--copper); }
-  .switch input:checked + .slider::before{ background:#FFFFFF; transform:translateX(-20px); }
-  .settings-input{
-    width:100%; background:var(--panel-2); border:1px solid var(--line); color:var(--text);
-    padding:10px 12px; border-radius:8px; font-size:13px; margin-bottom:8px;
-  }
-  .settings-input::placeholder{ color:var(--muted); }
-  .radio-row{
-    display:flex; align-items:center; gap:8px; font-size:13px; padding:8px 0; cursor:pointer;
-  }
-  .radio-row input{ accent-color:var(--copper); width:16px; height:16px; }
-
-  /* TOAST */
-  .toast{
-    position:fixed; bottom:24px; right:50%; transform:translateX(50%) translateY(20px);
-    background:var(--panel-2); border:1px solid var(--copper); color:var(--text);
-    padding:12px 20px; border-radius:8px; font-size:13px; z-index:100;
-    opacity:0; transition:.3s; pointer-events:none;
-  }
-  .toast.show{ opacity:1; transform:translateX(50%) translateY(0); }
-
-  footer{
-    text-align:center; padding:30px 20px; color:var(--muted); font-size:12px;
-    border-top:1px dashed var(--line); margin-top:20px;
-  }
-
-  @media(max-width:480px){
-    .hero{ padding:40px 16px 30px; }
-    .ticket{ padding:20px 16px; }
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKA Store - المتجر</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-900 text-white min-h-screen">
+    
+    <!-- شريط التنقل -->
+    <nav class="bg-gray-800 border-b border-gray-700 p-4 flex justify-between items-center">
+        <h1 class="text-xl font-bold text-orange-500">SKA Store 🚀</h1>
+        <a href="admin.html" class="bg-orange-600 hover:bg-orange-700 px-4 py-2 rounded text-sm font-bold">لوحة التحكم ⚙️</a>
+    </nav>
 
-<header>
-  <div class="logo">
-    <div class="logo-mark">⚙</div>
-    <div>
-      <div class="logo-text">مؤسسة صخر المصري</div>
-      <div class="logo-sub">PHONE PARTS & REPAIR</div>
-    </div>
-  </div>
-  <div style="display:flex; align-items:center; gap:8px;">
-    <button class="cart-btn" onclick="toggleSettings(true)" aria-label="الإعدادات">⚙️</button>
-    <button class="cart-btn" onclick="toggleCart(true)">
-      🛒 <span data-i18n="cartLabel">السلة</span> <span class="cart-count" id="cartCount">0</span>
-    </button>
-  </div>
-</header>
-
-<section class="hero">
-  <div class="ticket">
-    <div class="ticket-row">
-      <span class="mono">ORDER-2026-0417</span>
-      <span><span class="status-dot"></span> جاهزون لاستلام طلبك</span>
-    </div>
-    <h1>قطع غيار أصلية <span>و</span> أدوات صيانة احترافية</h1>
-    <p>شاشات، بطاريات، أدوات فك وتركيب، وإكسسوارات لكل أنواع الهواتف — بجودة موثوقة وأسعار واضحة، من غير تعقيد.</p>
-    <div class="hero-actions">
-      <button class="btn-primary" onclick="document.getElementById('catalog').scrollIntoView({behavior:'smooth'})">تصفح المنتجات</button>
-      <button class="btn-ghost" onclick="toggleCart(true)">عرض السلة</button>
-    </div>
-  </div>
-</section>
-
-<div class="tabs" id="tabs"></div>
-<div class="grid" id="catalog"></div>
-
-<footer>
-  © 2026 مؤسسة صخر المصري — هذا موقع تجريبي لأغراض العرض، لا يوجد دفع فعلي.
-</footer>
-
-<div class="overlay" id="overlay" onclick="toggleCart(false)"></div>
-<div class="drawer" id="drawer">
-  <div class="drawer-head">
-    <h3>سلة الطلبات</h3>
-    <button class="close-x" onclick="toggleCart(false)">✕</button>
-  </div>
-  <div class="drawer-items" id="drawerItems"></div>
-  <div class="drawer-foot">
-    <div class="total-row"><span>الإجمالي</span><b id="totalPrice">0 د.أ</b></div>
-    <button class="checkout-btn" id="checkoutBtn" onclick="checkout()">إتمام الطلب</button>
-  </div>
-</div>
-
-<div class="toast" id="toast"></div>
-
-<div class="overlay" id="settingsOverlay" onclick="toggleSettings(false)"></div>
-<div class="drawer" id="settingsDrawer">
-  <div class="drawer-head">
-    <h3 data-i18n="settingsTitle">الإعدادات</h3>
-    <button class="close-x" onclick="toggleSettings(false)">✕</button>
-  </div>
-  <div class="drawer-items">
-
-    <div class="settings-section">
-      <div class="settings-label" data-i18n="langLabel">اللغة</div>
-      <div class="segmented">
-        <button class="seg-btn active" id="lang-ar" onclick="setLanguage('ar')">العربية</button>
-        <button class="seg-btn" id="lang-en" onclick="setLanguage('en')">English</button>
-      </div>
-    </div>
-
-    <div class="settings-section">
-      <div class="settings-label" data-i18n="darkModeLabel">الوضع الليلي</div>
-      <label class="switch">
-        <input type="checkbox" id="darkToggle" onchange="toggleDarkMode(this.checked)">
-        <span class="slider"></span>
-      </label>
-    </div>
-
-    <div class="settings-section">
-      <div class="settings-label" data-i18n="accountLabel">الحساب</div>
-      <input class="settings-input" id="accName" type="text" data-i18n-placeholder="namePlaceholder" placeholder="الاسم الكامل">
-      <input class="settings-input" id="accPhone" type="tel" data-i18n-placeholder="phonePlaceholder" placeholder="رقم الجوال">
-      <button class="btn-ghost" style="width:100%; margin-top:6px;" onclick="saveAccount()" data-i18n="saveAccountBtn">حفظ بيانات الحساب</button>
-    </div>
-
-    <div class="settings-section">
-      <div class="settings-label" data-i18n="paymentLabel">طريقة الدفع</div>
-      <label class="radio-row"><input type="radio" name="pay" value="cod" checked onchange="setPayment('cod')"><span data-i18n="payCod">الدفع عند الاستلام</span></label>
-      <label class="radio-row"><input type="radio" name="pay" value="card" onchange="setPayment('card')"><span data-i18n="payCard">بطاقة ائتمان / مدى</span></label>
-      <label class="radio-row"><input type="radio" name="pay" value="paypal" onchange="setPayment('paypal')"><span>PayPal</span></label>
-    </div>
-
-  </div>
-</div>
-
-
-<script>
-const ICONS = {
-  screen: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="10" y1="19" x2="14" y2="19"/></svg>',
-  battery: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="18" height="10" rx="2"/><line x1="22" y1="10" x2="22" y2="14"/><line x1="6" y1="10" x2="6" y2="14"/></svg>',
-  tool: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L2 19v3h3l7.3-7.3a4 4 0 0 0 5.4-5.4l-2.8 2.8-2-2z"/></svg>',
-  cable: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 2v4a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V2"/><path d="M12 8v13"/><circle cx="12" cy="21" r="1"/></svg>'
-};
-
-const PRODUCT_IMAGES = {
-  screen: '<svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="1.2"><rect x="6" y="1.5" width="12" height="21" rx="2.2" fill="#F2F2F2"/><rect x="7.5" y="4" width="9" height="14.5" fill="#FFFFFF" stroke="#C8102E" stroke-width="0.6"/><circle cx="12" cy="20.2" r="0.9" fill="#111111" stroke="none"/></svg>',
-  battery: '<svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="1.2"><rect x="2" y="7" width="18" height="10" rx="1.5" fill="#F2F2F2"/><rect x="20.3" y="9.5" width="1.6" height="5" fill="#111111" stroke="none"/><rect x="4" y="9" width="12" height="6" fill="#C8102E" opacity="0.85" stroke="none"/></svg>',
-  tool: '<svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="1.2"><circle cx="12" cy="12" r="10.5" fill="#F2F2F2" stroke="#DDDDDD"/><path d="M15.7 7.3a4.3 4.3 0 0 0-5.9 5.7L4.5 18v1.5H6l5-5.3a4.3 4.3 0 0 0 5.9-5.7l-3 3-2.2-2.2 3-3z" fill="#C8102E" stroke="none"/></svg>',
-  cable: '<svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="1.2"><circle cx="12" cy="12" r="10.5" fill="#F2F2F2" stroke="#DDDDDD"/><path d="M9 5v3a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V5" stroke="#111111"/><path d="M12 10v9" stroke="#C8102E" stroke-width="1.6"/><circle cx="12" cy="20.3" r="1.1" fill="#111111" stroke="none"/></svg>'
-};
-
-const PRODUCTS = [
-  {id:'scr-101', name:'شاشة آيفون 13 OLED', sku:'SCR-101', cat:'screen', price:55, stock:'متوفر'},
-  {id:'scr-102', name:'شاشة سامسونج A54', sku:'SCR-102', cat:'screen', price:42, stock:'متوفر'},
-  {id:'scr-103', name:'شاشة آيفون 11 نسخة أصلية', sku:'SCR-103', cat:'screen', price:48, stock:'كمية محدودة', low:true},
-  {id:'scr-104', name:'شاشة آيفون 14 برو OLED', sku:'SCR-104', cat:'screen', price:68, stock:'متوفر'},
-  {id:'scr-105', name:'شاشة سامسونج A34', sku:'SCR-105', cat:'screen', price:38, stock:'متوفر'},
-  {id:'scr-106', name:'شاشة شاومي Redmi 12', sku:'SCR-106', cat:'screen', price:28, stock:'متوفر'},
-  {id:'bat-201', name:'بطارية آيفون 12/13', sku:'BAT-201', cat:'battery', price:16, stock:'متوفر'},
-  {id:'bat-202', name:'بطارية سامسونج S22', sku:'BAT-202', cat:'battery', price:18, stock:'متوفر'},
-  {id:'bat-203', name:'بطارية شاومي Redmi Note', sku:'BAT-203', cat:'battery', price:13, stock:'كمية محدودة', low:true},
-  {id:'bat-204', name:'بطارية آيفون 14', sku:'BAT-204', cat:'battery', price:19, stock:'متوفر'},
-  {id:'bat-205', name:'بطارية هواوي P30', sku:'BAT-205', cat:'battery', price:14, stock:'متوفر'},
-  {id:'tool-301', name:'طقم فك وتركيب 24 قطعة', sku:'TOOL-301', cat:'tool', price:11, stock:'متوفر'},
-  {id:'tool-302', name:'مسدس حرارة لفصل الشاشات', sku:'TOOL-302', cat:'tool', price:22, stock:'متوفر'},
-  {id:'tool-303', name:'مكبس فراغ لرفع الشاشة', sku:'TOOL-303', cat:'tool', price:9, stock:'متوفر'},
-  {id:'tool-304', name:'طقم عزل حراري لكشف الرطوبة', sku:'TOOL-304', cat:'tool', price:15, stock:'متوفر'},
-  {id:'tool-305', name:'ماكينة لحام دقيق للبورد', sku:'TOOL-305', cat:'tool', price:35, stock:'كمية محدودة', low:true},
-  {id:'cab-401', name:'كيبل شحن Type-C أصلي', sku:'CAB-401', cat:'cable', price:5, stock:'متوفر'},
-  {id:'cab-402', name:'شاحن سريع 30 واط', sku:'CAB-402', cat:'cable', price:15, stock:'متوفر'},
-  {id:'cab-403', name:'حماية شاشة زجاجية', sku:'CAB-403', cat:'cable', price:4, stock:'متوفر'},
-  {id:'cab-404', name:'جراب حماية سيليكون', sku:'CAB-404', cat:'cable', price:6, stock:'متوفر'},
-  {id:'cab-405', name:'سماعة شحن لايتنينغ أصلية', sku:'CAB-405', cat:'cable', price:12, stock:'متوفر'}
-];
-
-const CATS = [
-  {id:'all', label:'الكل'},
-  {id:'screen', label:'شاشات'},
-  {id:'battery', label:'بطاريات'},
-  {id:'tool', label:'أدوات صيانة'},
-  {id:'cable', label:'كيبلات وإكسسوارات'}
-];
-
-let cart = {}; // {id: qty}
-let activeCat = 'all';
-let paymentMethod = 'cod';
-let currentLang = 'ar';
-
-const I18N = {
-  ar:{
-    cartLabel:'السلة', settingsTitle:'الإعدادات', langLabel:'اللغة', darkModeLabel:'الوضع الليلي',
-    accountLabel:'الحساب', namePlaceholder:'الاسم الكامل', phonePlaceholder:'رقم الجوال',
-    saveAccountBtn:'حفظ بيانات الحساب', paymentLabel:'طريقة الدفع', payCod:'الدفع عند الاستلام', payCard:'بطاقة ائتمان / مدى'
-  },
-  en:{
-    cartLabel:'Cart', settingsTitle:'Settings', langLabel:'Language', darkModeLabel:'Dark Mode',
-    accountLabel:'Account', namePlaceholder:'Full name', phonePlaceholder:'Phone number',
-    saveAccountBtn:'Save account', paymentLabel:'Payment method', payCod:'Cash on delivery', payCard:'Credit / debit card'
-  }
-};
-
-function setLanguage(lang){
-  currentLang = lang;
-  document.getElementById('lang-ar').classList.toggle('active', lang==='ar');
-  document.getElementById('lang-en').classList.toggle('active', lang==='en');
-  document.documentElement.setAttribute('dir', lang==='ar' ? 'rtl' : 'ltr');
-  document.documentElement.setAttribute('lang', lang);
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
-    const key = el.getAttribute('data-i18n');
-    if(I18N[lang][key]) el.textContent = I18N[lang][key];
-  });
-  document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{
-    const key = el.getAttribute('data-i18n-placeholder');
-    if(I18N[lang][key]) el.placeholder = I18N[lang][key];
-  });
-}
-
-function toggleDarkMode(on){
-  document.body.classList.toggle('dark', on);
-}
-
-function saveAccount(){
-  const name = document.getElementById('accName').value.trim();
-  showToast(currentLang==='ar' ? 'تم حفظ بيانات الحساب' : 'Account details saved');
-}
-
-function setPayment(method){
-  paymentMethod = method;
-}
-
-function toggleSettings(open){
-  document.getElementById('settingsDrawer').classList.toggle('open', open);
-  document.getElementById('settingsOverlay').classList.toggle('open', open);
-}
-
-function renderTabs(){
-  const el = document.getElementById('tabs');
-  el.innerHTML = CATS.map(c => `<button class="tab ${c.id===activeCat?'active':''}" onclick="setCat('${c.id}')">${c.label}</button>`).join('');
-}
-
-function setCat(cat){
-  activeCat = cat;
-  renderTabs();
-  renderCatalog();
-}
-
-function renderCatalog(){
-  const el = document.getElementById('catalog');
-  const items = activeCat==='all' ? PRODUCTS : PRODUCTS.filter(p=>p.cat===activeCat);
-  el.innerHTML = items.map(p => `
-    <div class="card">
-      <div class="card-image">${PRODUCT_IMAGES[p.cat]}</div>
-      <div class="card-top">
-        <div class="cat-icon">${ICONS[p.cat]}</div>
-        <div class="card-title">${p.name}</div>
-        <div class="card-sku mono">${p.sku}</div>
-      </div>
-      <div class="card-perf"></div>
-      <div class="card-body">
-        <div>
-          <div class="price">${p.price} د.أ</div>
-          <div class="stock ${p.low?'low':''}">${p.stock}</div>
+    <!-- محتوى المتجر -->
+    <main class="container mx-auto p-4">
+        <h2 class="text-2xl font-bold mb-6 text-center">المنتجات المتوفرة</h2>
+        <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <!-- سيتم تحميل المنتجات تلقائياً من قاعدة البيانات -->
+            <p class="text-center col-span-full text-gray-400">جاري تحميل المنتجات...</p>
         </div>
-        <button class="add-btn" onclick="addToCart('${p.id}')">+</button>
-      </div>
-    </div>
-  `).join('');
-}
+    </main>
 
-function addToCart(id){
-  cart[id] = (cart[id] || 0) + 1;
-  updateCartUI();
-  showToast('تمت الإضافة إلى السلة');
-}
+    <!-- سكربت الفايربيس وعرض المنتجات -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 
-function changeQty(id, delta){
-  if(!cart[id]) return;
-  cart[id] += delta;
-  if(cart[id] <= 0) delete cart[id];
-  updateCartUI();
-}
+        const firebaseConfig = {
+            apiKey: "AIzaSyCb09c67UUqwwLr-vULeTkHqQR2li7AASI",
+            authDomain: "ska-storu.firebaseapp.com",
+            projectId: "ska-storu",
+            storageBucket: "ska-storu.firebasestorage.app",
+            messagingSenderId: "574053376429",
+            appId: "1:574053376429:web:b3d01c62c625b10a368124"
+        };
 
-function updateCartUI(){
-  const count = Object.values(cart).reduce((a,b)=>a+b,0);
-  document.getElementById('cartCount').textContent = count;
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
 
-  const drawerItems = document.getElementById('drawerItems');
-  const ids = Object.keys(cart);
-  if(ids.length === 0){
-    drawerItems.innerHTML = '<div class="empty-cart">السلة فارغة حالياً<br>ابدأ بإضافة قطع الغيار اللي تحتاجها</div>';
-  } else {
-    drawerItems.innerHTML = ids.map(id => {
-      const p = PRODUCTS.find(x=>x.id===id);
-      return `
-      <div class="cart-item">
-        <div class="ci-info">
-          <div>${p.name}</div>
-          <div class="ci-sku mono">${p.sku} · ${p.price} د.أ</div>
-        </div>
-        <div class="ci-qty">
-          <button class="qty-btn" onclick="changeQty('${id}',-1)">−</button>
-          <span>${cart[id]}</span>
-          <button class="qty-btn" onclick="changeQty('${id}',1)">+</button>
-        </div>
-      </div>`;
-    }).join('');
-  }
+        async function loadProducts() {
+            const grid = document.getElementById('products-grid');
+            grid.innerHTML = '';
+            try {
+                const querySnapshot = await getDocs(collection(db, "products"));
+                if (querySnapshot.empty) {
+                    grid.innerHTML = '<p class="text-center col-span-full text-gray-400">لا توجد منتجات حالياً. أضف منتجات من لوحة التحكم!</p>';
+                    return;
+                }
+                querySnapshot.forEach((doc) => {
+                    const p = doc.data();
+                    grid.innerHTML += `
+                        <div class="bg-gray-800 border border-gray-700 rounded-lg p-4 flex flex-col justify-between shadow-md">
+                            <div>
+                                <h3 class="text-lg font-bold text-orange-400 mb-2">${p.name}</h3>
+                                <p class="text-gray-300 text-sm mb-4">${p.description}</p>
+                            </div>
+                            <div class="flex justify-between items-center mt-4 pt-3 border-t border-gray-700">
+                                <div>
+                                    ${p.discount ? `<span class="line-through text-gray-500 text-sm ml-2">${p.price} $</span>` : ''}
+                                    <span class="text-green-400 font-bold text-lg">${p.finalPrice || p.price} $</span>
+                                </div>
+                                <button onclick="alert('تمت إضافة المنتج للسلة')" class="bg-orange-600 hover:bg-orange-700 px-3 py-1 rounded text-sm font-bold">شراء</button>
+                            </div>
+                        </div>
+                    `;
+                });
+            } catch (error) {
+                grid.innerHTML = '<p class="text-center col-span-full text-red-400">خطأ في تحميل المنتجات.</p>';
+            }
+        }
 
-  const total = ids.reduce((sum,id)=>{
-    const p = PRODUCTS.find(x=>x.id===id);
-    return sum + p.price * cart[id];
-  }, 0);
-  document.getElementById('totalPrice').textContent = total + ' د.أ';
-  document.getElementById('checkoutBtn').disabled = ids.length === 0;
-}
-
-function toggleCart(open){
-  document.getElementById('drawer').classList.toggle('open', open);
-  document.getElementById('overlay').classList.toggle('open', open);
-}
-
-function showToast(msg){
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(()=> t.classList.remove('show'), 1800);
-}
-
-function checkout(){
-  const payLabels = {cod:'الدفع عند الاستلام', card:'بطاقة ائتمان', paypal:'PayPal'};
-  showToast('تم استلام طلبك (تجريبي) عبر ' + payLabels[paymentMethod] + ' — شكراً لك!');
-  cart = {};
-  updateCartUI();
-  setTimeout(()=> toggleCart(false), 900);
-}
-
-renderTabs();
-renderCatalog();
-updateCartUI();
-</script>
-
+        loadProducts();
+    </script>
 </body>
 </html>
