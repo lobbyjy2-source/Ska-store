@@ -21,114 +21,106 @@
 </head>
 <body class="p-4 md:p-8">
 
-    <div class="max-w-4xl mx-auto">
-        <!-- رأس لوحة التحكم -->
-        <div class="flex justify-between items-center mb-8 border-b border-[var(--line)] pb-4">
-            <div>
-                <h1 class="text-xl md:text-2xl font-black text-[var(--primary)] flex items-center">
-                    <i class="fa-solid fa-lock-open ml-2"></i> لوحة تحكم مؤسسة صخر المصري
-                </h1>
-                <p class="text-xs text-[var(--muted)] mt-1">إدارة المنتجات، تخصيص الهوية والألوان، وأوقات العمل</p>
+    <div class="container mx-auto max-w-4xl">
+        <!-- رأس الصفحة -->
+        <div class="flex justify-between items-center mb-8 bg-[var(--panel)] p-5 rounded-2xl border border-[var(--line)] shadow-xl">
+            <div class="flex items-center space-x-3 space-x-reverse">
+                <div class="w-12 h-12 bg-[var(--primary)] text-white rounded-xl flex items-center justify-center font-black text-xl shadow-lg">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <div>
+                    <h1 class="font-black text-lg md:text-xl">لوحة الإدارة والتحكم</h1>
+                    <p class="text-xs text-[var(--muted)]">إضافة وتعديل المنتجات وأوقات العمل</p>
+                </div>
             </div>
             <a href="index.html" class="bg-[var(--panel-2)] border border-[var(--line)] px-4 py-2 rounded-xl text-xs font-bold hover:bg-[var(--line)] transition flex items-center space-x-1.5 space-x-reverse">
-                <i class="fa-solid fa-store text-xs"></i>
+                <i class="fa-solid fa-store"></i>
                 <span>عرض المتجر</span>
             </a>
         </div>
 
-        <!-- تبويبات لوحة التحكم -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            
-            <!-- قسم تخصيص ألوان المتجر وأوقات العمل (الجديد) -->
-            <div class="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-5 shadow-xl">
-                <h2 class="font-black text-sm mb-4 text-[var(--primary)] flex items-center">
-                    <i class="fa-solid fa-palette ml-2"></i> إعدادات الهوية وأوقات العمل
-                </h2>
-                
-                <div class="space-y-4">
-                    <div>
-                        <label class="block text-xs font-bold mb-1.5">اللون الرئيسي للموقع (Theme Color):</label>
-                        <div class="flex items-center space-x-3 space-x-reverse">
-                            <input type="color" id="shop-primary-color" value="#DC2626" class="w-12 h-10 bg-transparent rounded-xl cursor-pointer border border-[var(--line)]">
-                            <span class="text-xs text-[var(--muted)]">اختر اللون البارز للأزرار والعناصر (مثال: أحمر، أزرق، أخضر)</span>
-                        </div>
+        <!-- إعدادات المتجر العامة (اللون وأوقات العمل) -->
+        <div class="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-6 mb-8 shadow-xl">
+            <h2 class="font-black text-base mb-4 text-[var(--primary)] flex items-center">
+                <i class="fa-solid fa-sliders ml-2"></i> إعدادات المتجر العامة
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-xs font-bold mb-2 text-[var(--muted)]">لون المتجر الرئيسي (Primary Color)</label>
+                    <div class="flex items-center space-x-2 space-x-reverse">
+                        <input type="color" id="primary-color-input" value="#EF4444" class="w-12 h-10 bg-[var(--panel-2)] border border-[var(--line)] rounded-xl cursor-pointer p-1">
+                        <span class="text-xs text-[var(--muted)]">اختر اللون المميز للأزرار والعناوين</span>
                     </div>
-
-                    <div>
-                        <label class="block text-xs font-bold mb-1.5">أوقات العمل الرسمية:</label>
-                        <input type="text" id="shop-working-hours" placeholder="السبت - الخميس: 10 صباحاً - 10 مساءً" class="w-full p-2.5 bg-[var(--panel-2)] border border-[var(--line)] rounded-xl text-xs text-[var(--text)] focus:border-red-500 outline-none">
-                    </div>
-
-                    <button onclick="saveStoreSettings()" class="w-full bg-[var(--primary)] text-white py-2.5 rounded-xl font-bold text-xs shadow hover:opacity-95 transition">
-                        حفظ إعدادات المتجر
-                    </button>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold mb-2 text-[var(--muted)]">نص أوقات العمل الرسمية</label>
+                    <input type="text" id="working-hours-input" placeholder="مثال: من السبت للخميس (10:0 صباحاً - 9:0 مساءً)" class="w-full p-3 bg-[var(--panel-2)] border border-[var(--line)] rounded-xl text-xs outline-none focus:border-[var(--primary)]">
                 </div>
             </div>
+            <button onclick="saveStoreConfig()" class="mt-4 bg-[var(--primary)] text-white px-5 py-2.5 rounded-xl font-bold text-xs shadow hover:opacity-90 transition">حفظ الإعدادات العامة</button>
+        </div>
 
-            <!-- قسم إضافة منتج جديد -->
-            <div class="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-5 shadow-xl">
-                <h2 class="font-black text-sm mb-4 text-[var(--primary)] flex items-center">
-                    <i class="fa-solid fa-plus-circle ml-2"></i> إضافة منتج جديد
-                </h2>
-                
-                <form id="product-form" class="space-y-3">
-                    <input type="text" id="p-name" placeholder="اسم المنتج (مثال: شاشة آيفون)" required class="w-full p-2.5 bg-[var(--panel-2)] border border-[var(--line)] rounded-xl text-xs text-[var(--text)] focus:border-red-500 outline-none">
-                    
-                    <select id="p-cat" class="w-full p-2.5 bg-[var(--panel-2)] border border-[var(--line)] rounded-xl text-xs text-[var(--text)] focus:border-red-500 outline-none">
+        <!-- إضافة منتج جديد -->
+        <div class="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-6 mb-8 shadow-xl">
+            <h2 class="font-black text-base mb-4 text-[var(--primary)] flex items-center">
+                <i class="fa-solid fa-plus-circle ml-2"></i> إضافة منتج جديد
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <div>
+                    <label class="block text-xs font-bold mb-2 text-[var(--muted)]">اسم المنتج</label>
+                    <input type="text" id="p-name" placeholder="مثال: شاشة آيفون أصلية" class="w-full p-3 bg-[var(--panel-2)] border border-[var(--line)] rounded-xl text-xs outline-none focus:border-[var(--primary)]">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold mb-2 text-[var(--muted)]">القسم</label>
+                    <select id="p-cat" class="w-full p-3 bg-[var(--panel-2)] border border-[var(--line)] rounded-xl text-xs outline-none focus:border-[var(--primary)]">
                         <option value="شاشات">شاشات</option>
                         <option value="بطاريات">بطاريات</option>
                         <option value="أدوات صيانة">أدوات صيانة</option>
                         <option value="كيبلات وإكسسوارات">كيبلات وإكسسوارات</option>
                     </select>
-
-                    <div class="grid grid-cols-2 gap-2">
-                        <input type="number" id="p-price" placeholder="السعر الأساسي (د.أ)" required class="p-2.5 bg-[var(--panel-2)] border border-[var(--line)] rounded-xl text-xs text-[var(--text)] focus:border-red-500 outline-none">
-                        <input type="number" id="p-discount" placeholder="نسبة الخصم % (اختياري)" class="p-2.5 bg-[var(--panel-2)] border border-[var(--line)] rounded-xl text-xs text-[var(--text)] focus:border-red-500 outline-none">
-                    </div>
-
-                    <select id="p-status" class="w-full p-2.5 bg-[var(--panel-2)] border border-[var(--line)] rounded-xl text-xs text-[var(--text)] focus:border-red-500 outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold mb-2 text-[var(--muted)]">السعر الأصلي (د.أ)</label>
+                    <input type="number" id="p-price" placeholder="0.00" class="w-full p-3 bg-[var(--panel-2)] border border-[var(--line)] rounded-xl text-xs outline-none focus:border-[var(--primary)]">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold mb-2 text-[var(--muted)]">نسبة الخصم % (اختياري)</label>
+                    <input type="number" id="p-discount" placeholder="0" class="w-full p-3 bg-[var(--panel-2)] border border-[var(--line)] rounded-xl text-xs outline-none focus:border-[var(--primary)]">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold mb-2 text-[var(--muted)]">حالة التوفر</label>
+                    <select id="p-status" class="w-full p-3 bg-[var(--panel-2)] border border-[var(--line)] rounded-xl text-xs outline-none focus:border-[var(--primary)]">
                         <option value="متوفر">متوفر</option>
                         <option value="متوفر بكميات محدودة">متوفر بكميات محدودة</option>
                         <option value="منتهي">منتهي</option>
                     </select>
-
-                    <input type="text" id="p-image" placeholder="رابط صورة المنتج (URL)" class="w-full p-2.5 bg-[var(--panel-2)] border border-[var(--line)] rounded-xl text-xs text-[var(--text)] focus:border-red-500 outline-none">
-
-                    <button type="submit" id="submit-btn" class="w-full bg-[var(--primary)] text-white py-2.5 rounded-xl font-bold text-xs shadow hover:opacity-95 transition">
-                        إضافة المنتج للمتجر
-                    </button>
-                </form>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold mb-2 text-[var(--muted)]">رابط الصورة (Image URL)</label>
+                    <input type="text" id="p-image" placeholder="https://..." class="w-full p-3 bg-[var(--panel-2)] border border-[var(--line)] rounded-xl text-xs outline-none focus:border-[var(--primary)]">
+                </div>
             </div>
-
+            <div class="mb-4">
+                <label class="block text-xs font-bold mb-2 text-[var(--muted)]">وصف المنتج</label>
+                <textarea id="p-desc" placeholder="تفاصيل المنتج والمواصفات..." class="w-full p-3 bg-[var(--panel-2)] border border-[var(--line)] rounded-xl text-xs outline-none focus:border-[var(--primary)] h-20"></textarea>
+            </div>
+            <button onclick="addProduct()" class="w-full bg-[var(--primary)] text-white py-3 rounded-xl font-bold text-xs shadow-lg hover:opacity-90 transition">نشر المنتج في المتجر</button>
         </div>
 
-        <!-- جدول المنتجات الحالية -->
-        <div class="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-5 shadow-xl">
-            <h2 class="font-black text-sm mb-4 text-[var(--text)] flex items-center">
-                <i class="fa-solid fa-boxes-stacked ml-2 text-[var(--primary)]"></i> المنتجات المسجلة حالياً
+        <!-- إدارة المنتجات الحالية -->
+        <div class="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-6 shadow-xl">
+            <h2 class="font-black text-base mb-4 text-[var(--primary)] flex items-center">
+                <i class="fa-solid fa-boxes-stacked ml-2"></i> قائمة المنتجات الحالية
             </h2>
-            <div class="overflow-x-auto">
-                <table class="w-full text-right text-xs">
-                    <thead>
-                        <tr class="border-b border-[var(--line)] text-[var(--muted)]">
-                            <th class="pb-3">المنتج</th>
-                            <th class="pb-3">القسم</th>
-                            <th class="pb-3">السعر</th>
-                            <th class="pb-3">الحالة</th>
-                            <th class="pb-3 text-center">إجراءات</th>
-                        </tr>
-                    </thead>
-                    <tbody id="admin-products-list">
-                        <tr><td colspan="5" class="text-center py-4 text-[var(--muted)]">جاري تحميل المنتجات...</td></tr>
-                    </tbody>
-                </table>
+            <div id="admin-products-list" class="space-y-3">
+                <p class="text-center text-[var(--muted)] py-6 text-xs">جاري تحميل المنتجات...</p>
             </div>
         </div>
     </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
-        import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc, updateDoc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+        import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyCb09c67UUqwwLr-vULeTkHqQR2li7AASI",
@@ -142,100 +134,100 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // تحميل الإعدادات المحفوظة مسبقاً في اللوحة
-        async function loadAdminSettings() {
+        async function loadAdminConfig() {
             try {
-                const docRef = doc(db, "settings", "store_config");
-                const docSnap = await getDoc(docRef);
+                const docSnap = await getDoc(doc(db, "settings", "store_config"));
                 if (docSnap.exists()) {
                     const data = docSnap.data();
-                    if(data.primaryColor) document.getElementById('shop-primary-color').value = data.primaryColor;
-                    if(data.workingHours) document.getElementById('shop-working-hours').value = data.workingHours;
+                    if(data.primaryColor) document.getElementById('primary-color-input').value = data.primaryColor;
+                    if(data.workingHours) document.getElementById('working-hours-input').value = data.workingHours;
                 }
             } catch(e) { console.log(e); }
         }
 
-        window.saveStoreSettings = async function() {
-            const primaryColor = document.getElementById('shop-primary-color').value;
-            const workingHours = document.getElementById('shop-working-hours').value;
-
+        window.saveStoreConfig = async function() {
+            const primaryColor = document.getElementById('primary-color-input').value;
+            const workingHours = document.getElementById('working-hours-input').value;
             try {
-                await setDoc(doc(db, "settings", "store_config"), {
-                    primaryColor: primaryColor,
-                    workingHours: workingHours
-                }, { merge: true });
-                alert("✨ تم حفظ إعدادات وتصاميم المتجر بنجاح وتطبيقها على الفور!");
+                await setDoc(doc(db, "settings", "store_config"), { primaryColor, workingHours });
+                alert('تم حفظ الإعدادات العامة بنجاح!');
             } catch(e) {
-                alert("خطأ أثناء الحفظ: " + e.message);
+                alert('حدث خطأ أثناء الحفظ');
             }
         }
 
-        async function fetchAdminProducts() {
-            const tbody = document.getElementById('admin-products-list');
-            tbody.innerHTML = '';
+        window.addProduct = async function() {
+            const name = document.getElementById('p-name').value;
+            const cat = document.getElementById('p-cat').value;
+            const price = Number(document.getElementById('p-price').value);
+            const discount = Number(document.getElementById('p-discount').value || 0);
+            const status = document.getElementById('p-status').value;
+            const image = document.getElementById('p-image').value;
+            const description = document.getElementById('p-desc').value;
+
+            if(!name || !price) {
+                alert('يرجى إدخال اسم المنتج والسعر على الأقل');
+                return;
+            }
+
+            const finalPrice = discount > 0 ? price - (price * discount / 100) : price;
+
+            try {
+                await addDoc(collection(db, "products"), {
+                    name, cat, price, discount, finalPrice, status, image, description, createdAt: new Date()
+                });
+                alert('تم إضافة المنتج بنجاح!');
+                document.getElementById('p-name').value = '';
+                document.getElementById('p-price').value = '';
+                document.getElementById('p-discount').value = '';
+                document.getElementById('p-image').value = '';
+                document.getElementById('p-desc').value = '';
+                loadAdminProducts();
+            } catch(e) {
+                alert('خطأ أثناء إضافة المنتج');
+            }
+        }
+
+        async function loadAdminProducts() {
+            const container = document.getElementById('admin-products-list');
+            container.innerHTML = '';
             try {
                 const querySnapshot = await getDocs(collection(db, "products"));
-                if (querySnapshot.empty) {
-                    tbody.innerHTML = `<tr><td colspan="5" class="text-center py-4 text-[var(--muted)]">لا توجد منتجات حالياً.</td></tr>`;
+                if(querySnapshot.empty) {
+                    container.innerHTML = '<p class="text-center text-[var(--muted)] py-6 text-xs">لا توجد منتجات حالياً.</p>';
                     return;
                 }
                 querySnapshot.forEach((document) => {
                     const p = document.data();
                     const id = document.id;
-                    tbody.innerHTML += `
-                        <tr class="border-b border-[var(--line)] hover:bg-[var(--panel-2)] transition">
-                            <td class="py-3 font-bold">${p.name}</td>
-                            <td class="py-3 text-[var(--muted)]">${p.cat}</td>
-                            <td class="py-3 text-[var(--primary)] font-black">${p.finalPrice || p.price} د.أ</td>
-                            <td class="py-3">${p.status}</td>
-                            <td class="py-3 text-center">
-                                <button onclick="deleteProduct('${id}')" class="bg-red-500/10 text-red-500 px-3 py-1 rounded-lg font-bold hover:bg-red-500 hover:text-white transition">حذف</button>
-                            </td>
-                        </tr>
+                    container.innerHTML += `
+                        <div class="flex justify-between items-center bg-[var(--panel-2)] p-3.5 rounded-xl border border-[var(--line)]">
+                            <div>
+                                <h4 class="font-bold text-xs">${p.name}</h4>
+                                <span class="text-[10px] text-[var(--primary)] font-bold">${p.finalPrice || p.price} د.أ | قسم: ${p.cat}</span>
+                            </div>
+                            <button onclick="deleteProduct('${id}')" class="bg-red-500/10 text-red-500 border border-red-500/20 px-3 py-1.5 rounded-lg text-xs font-bold hover:bg-red-500 hover:text-white transition">حذف</button>
+                        </div>
                     `;
                 });
             } catch(e) {
-                tbody.innerHTML = `<tr><td colspan="5" class="text-center py-4 text-red-500">خطأ في جلب المنتجات</td></tr>`;
+                container.innerHTML = '<p class="text-center text-red-500 py-6 text-xs">خطأ في تحميل المنتجات</p>';
             }
         }
 
-        document.getElementById('product-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const name = document.getElementById('p-name').value;
-            const cat = document.getElementById('p-cat').value;
-            const price = parseFloat(document.getElementById('p-price').value);
-            const discount = parseFloat(document.getElementById('p-discount').value) || 0;
-            const status = document.getElementById('p-status').value;
-            const image = document.getElementById('p-image').value;
-
-            const finalPrice = discount > 0 ? price - (price * (discount / 100)) : price;
-
-            try {
-                await addDoc(collection(db, "products"), {
-                    name, cat, price, discount, finalPrice, status, image, createdAt: new Date()
-                });
-                alert("تمت إضافة المنتج بنجاح!");
-                document.getElementById('product-form').reset();
-                fetchAdminProducts();
-            } catch(err) {
-                alert("حدث خطأ أثناء الإضافة");
-            }
-        });
-
         window.deleteProduct = async function(id) {
-            if(confirm("هل أنت متأكد من حذف هذا المنتج؟")) {
+            if(confirm('هل أنت متأكد من حذف هذا المنتج؟')) {
                 try {
                     await deleteDoc(doc(db, "products", id));
-                    fetchAdminProducts();
+                    loadAdminProducts();
                 } catch(e) {
-                    alert("خطأ أثناء الحذف");
+                    alert('خطأ أثناء الحذف');
                 }
             }
         }
 
-        loadAdminSettings();
-        fetchAdminProducts();
+        loadAdminConfig();
+        loadAdminProducts();
     </script>
 </body>
 </html>
-
