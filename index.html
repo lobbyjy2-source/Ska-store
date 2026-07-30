@@ -32,6 +32,11 @@
 </head>
 <body class="dark">
 
+    <!-- شريط أوقات العمل الديناميكي -->
+    <div id="working-hours-bar" class="bg-[var(--primary)] text-white text-center py-1.5 text-xs font-bold shadow-sm hidden">
+        <i class="fa-solid fa-clock ml-1"></i> أوقات العمل الرسمية: <span id="hours-text"></span>
+    </div>
+
     <header class="sticky top-0 z-50 bg-[var(--panel)] border-b border-[var(--line)] shadow-sm backdrop-blur-md bg-opacity-90">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             
@@ -49,13 +54,18 @@
                 </a>
             </div>
 
+            <!-- اللوغو الجديد -->
             <div class="flex items-center space-x-3 space-x-reverse text-right" id="brand-container">
                 <div>
                     <h1 id="brand-title" class="font-black text-base md:text-xl text-[var(--text)] tracking-wide">مؤسسة صخر المصري</h1>
                     <p class="text-[10px] text-[var(--primary)] font-bold tracking-widest uppercase">PHONE PARTS & MAINTENANCE</p>
                 </div>
-                <div class="w-11 h-11 bg-[var(--dark-box)] border border-red-500 rounded-xl flex items-center justify-center shadow-lg">
-                    <span class="text-white font-black text-base tracking-tighter">SKA</span>
+                <div class="w-12 h-12 bg-white border-2 border-[var(--primary)] rounded-xl flex items-center justify-center shadow-lg overflow-hidden p-1">
+                    <svg viewBox="0 0 500 500" class="w-full h-full object-contain" xmlns="http://www.w3.org/2000/svg">
+                        <!-- تصميم اللوغو الجديد المخصص SAK -->
+                        <path d="M70 60 H430 V350 C430 420 250 460 250 460 C250 460 70 420 70 350 Z" fill="none" stroke="#111" stroke-width="35" stroke-linejoin="round"/>
+                        <text x="250" y="280" font-family="system-ui, sans-serif" font-weight="900" font-size="160" fill="#111" text-anchor="middle">SAK</text>
+                    </svg>
                 </div>
             </div>
 
@@ -73,10 +83,10 @@
     <main class="container mx-auto px-4 py-8">
         <div class="flex justify-center gap-2 mb-8 overflow-x-auto pb-2" id="categories-container">
             <button onclick="filterCategory('الكل')" class="cat-btn active px-4 py-2 rounded-xl text-sm font-bold bg-[var(--primary)] text-white shadow" data-ar="الكل" data-en="All">الكل</button>
-            <button onclick="filterCategory('شاشات')" class="cat-btn px-4 py-2 rounded-xl text-sm font-bold bg-[var(--panel-2)] border border-[var(--line)] hover:border-red-500 transition" data-ar="شاشات" data-en="Screens">شاشات</button>
-            <button onclick="filterCategory('بطاريات')" class="cat-btn px-4 py-2 rounded-xl text-sm font-bold bg-[var(--panel-2)] border border-[var(--line)] hover:border-red-500 transition" data-ar="بطاريات" data-en="Batteries">بطاريات</button>
-            <button onclick="filterCategory('أدوات صيانة')" class="cat-btn px-4 py-2 rounded-xl text-sm font-bold bg-[var(--panel-2)] border border-[var(--line)] hover:border-red-500 transition" data-ar="أدوات صيانة" data-en="Tools">أدوات صيانة</button>
-            <button onclick="filterCategory('كيبلات وإكسسوارات')" class="cat-btn px-4 py-2 rounded-xl text-sm font-bold bg-[var(--panel-2)] border border-[var(--line)] hover:border-red-500 transition" data-ar="كيبلات وإكسسوارات" data-en="Accessories">الإكسسوارات</button>
+            <button onclick="filterCategory('شاشات')" class="cat-btn px-4 py-2 rounded-xl text-sm font-bold bg-[var(--panel-2)] border border-[var(--line)] hover:border-[var(--primary)] transition" data-ar="شاشات" data-en="Screens">شاشات</button>
+            <button onclick="filterCategory('بطاريات')" class="cat-btn px-4 py-2 rounded-xl text-sm font-bold bg-[var(--panel-2)] border border-[var(--line)] hover:border-[var(--primary)] transition" data-ar="بطاريات" data-en="Batteries">بطاريات</button>
+            <button onclick="filterCategory('أدوات صيانة')" class="cat-btn px-4 py-2 rounded-xl text-sm font-bold bg-[var(--panel-2)] border border-[var(--line)] hover:border-[var(--primary)] transition" data-ar="أدوات صيانة" data-en="Tools">أدوات صيانة</button>
+            <button onclick="filterCategory('كيبلات وإكسسوارات')" class="cat-btn px-4 py-2 rounded-xl text-sm font-bold bg-[var(--panel-2)] border border-[var(--line)] hover:border-[var(--primary)] transition" data-ar="كيبلات وإكسسوارات" data-en="Accessories">الإكسسوارات</button>
         </div>
 
         <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
@@ -110,8 +120,8 @@
                 <!-- بيانات المستخدم -->
                 <div class="mb-4 space-y-3 border-t border-[var(--line)] pt-4">
                     <h4 class="font-bold text-xs text-[var(--text)]" id="user-info-label">بيانات المستخدم / الحساب:</h4>
-                    <input type="text" id="user-name" placeholder="الاسم الكامل" class="w-full p-2.5 bg-[var(--panel-2)] border border-[var(--line)] rounded-xl text-xs text-[var(--text)]">
-                    <input type="text" id="user-phone" placeholder="رقم الهاتف" class="w-full p-2.5 bg-[var(--panel-2)] border border-[var(--line)] rounded-xl text-xs text-[var(--text)]">
+                    <input type="text" id="user-name" placeholder="الاسم الكامل" class="w-full p-2.5 bg-[var(--panel-2)] border border-[var(--line)] rounded-xl text-xs text-[var(--text)] outline-none focus:border-[var(--primary)]">
+                    <input type="text" id="user-phone" placeholder="رقم الهاتف" class="w-full p-2.5 bg-[var(--panel-2)] border border-[var(--line)] rounded-xl text-xs text-[var(--text)] outline-none focus:border-[var(--primary)]">
                 </div>
 
                 <!-- وقت التوصيل الاحترافي -->
@@ -120,7 +130,7 @@
                         <i class="fa-solid fa-clock text-[var(--primary)] ml-1.5"></i> 
                         <span id="delivery-time-label">وقت التوصيل المفضل:</span>
                     </h4>
-                    <select id="delivery-time-select" class="w-full p-2.5 bg-[var(--panel-2)] border border-[var(--line)] rounded-xl text-xs text-[var(--text)] focus:border-red-500 outline-none">
+                    <select id="delivery-time-select" class="w-full p-2.5 bg-[var(--panel-2)] border border-[var(--line)] rounded-xl text-xs text-[var(--text)] focus:border-[var(--primary)] outline-none">
                         <option value="توصيل سريع فوري (خلال 60 دقيقة)">⚡ توصيل سريع فوري (خلال 60 دقيقة)</option>
                         <option value="الفترة الصباحية (10:00 ص - 02:00 م)">☀️ الفترة الصباحية (10:00 ص - 02:00 م)</option>
                         <option value="الفترة المسائية (04:00 م - 09:00 م)">🌙 الفترة المسائية (04:00 م - 09:00 م)</option>
@@ -132,11 +142,11 @@
                 <div class="border-t border-[var(--line)] pt-4 space-y-2">
                     <h4 class="font-bold text-xs text-[var(--text)] mb-2" id="payment-label">طريقة الدفع:</h4>
                     <label class="flex items-center space-x-2 space-x-reverse text-xs bg-[var(--panel-2)] p-2.5 rounded-xl border border-[var(--line)] cursor-pointer">
-                        <input type="radio" name="payment" value="الدفع عند الاستلام" checked class="text-red-500">
+                        <input type="radio" name="payment" value="الدفع عند الاستلام" checked class="accent-[var(--primary)]">
                         <span id="pay-cod">الدفع عند الاستلام</span>
                     </label>
                     <label class="flex items-center space-x-2 space-x-reverse text-xs bg-[var(--panel-2)] p-2.5 rounded-xl border border-[var(--line)] cursor-pointer">
-                        <input type="radio" name="payment" value="زين كاش" class="text-red-500">
+                        <input type="radio" name="payment" value="زين كاش" class="accent-[var(--primary)]">
                         <span id="pay-zain">محفظة زين كاش (Zain Cash)</span>
                     </label>
                 </div>
@@ -174,7 +184,7 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
-        import { getFirestore, collection, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+        import { getFirestore, collection, getDocs, addDoc, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyCb09c67UUqwwLr-vULeTkHqQR2li7AASI",
@@ -252,6 +262,24 @@
             }
         };
 
+        // تحميل الإعدادات المخصصة من الأدمن (اللون وأوقات العمل)
+        async function loadStoreConfig() {
+            try {
+                const docRef = doc(db, "settings", "store_config");
+                const docSnap = await getDoc(docRef);
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    if(data.primaryColor) {
+                        document.documentElement.style.setProperty('--primary', data.primaryColor);
+                    }
+                    if(data.workingHours) {
+                        document.getElementById('hours-text').innerText = data.workingHours;
+                        document.getElementById('working-hours-bar').classList.remove('hidden');
+                    }
+                }
+            } catch(e) { console.log(e); }
+        }
+
         window.setLanguage = function(lang) {
             currentLang = lang;
             localStorage.setItem('ska_lang', lang);
@@ -284,34 +312,4 @@
             document.getElementById('cart-title').innerText = t.cartTitle;
             if(cart.length === 0) document.getElementById('empty-cart-text').innerText = t.emptyCart;
             document.getElementById('total-label').innerText = t.total;
-            document.getElementById('checkout-btn').innerText = t.checkout;
-
-            renderFilteredProducts();
-        }
-
-        async function loadProducts() {
-            const grid = document.getElementById('products-grid');
-            grid.innerHTML = '';
-            try {
-                const querySnapshot = await getDocs(collection(db, "products"));
-                if (querySnapshot.empty) {
-                    await addDoc(collection(db, "products"), { name: "شاشة آيفون 13 الأصلية", cat: "شاشات", status: "متوفر", description: "شاشة أصلية مع ضمان", price: 65, discount: 10, finalPrice: 58.5, image: "", createdAt: new Date() });
-                    await addDoc(collection(db, "products"), { name: "بطارية آيفون سعة عالية", cat: "بطاريات", status: "متوفر بكميات محدودة", description: "بطارية أصلية عالية الأداء", price: 25, discount: 0, finalPrice: 25, image: "", createdAt: new Date() });
-                    await addDoc(collection(db, "products"), { name: "مفكات صيانة احترافية", cat: "أدوات صيانة", status: "متوفر", description: "طقم مفكات دقيقة شامل", price: 15, discount: 0, finalPrice: 15, image: "", createdAt: new Date() });
-                    loadProducts();
-                    return;
-                }
-                productsList = [];
-                querySnapshot.forEach((document) => {
-                    const p = document.data();
-                    p.id = document.id;
-                    productsList.push(p);
-                });
-                renderFilteredProducts();
-            } catch (err) {
-                grid.innerHTML = '<p class="text-center col-span-full text-red-500 py-10">خطأ في الاتصال بقاعدة البيانات</p>';
-            }
-        }
-
-        function renderFilteredProducts() {
-            const grid = document.getElementByI
+         
